@@ -35,6 +35,7 @@ check() {
 package() {
   cd ${pkgname}
   make DESTDIR="$pkgdir" install
+  rm "${pkgdir}/usr/bin/pacsort"
 }
 
 # vim:set ts=2 sw=2 et:
