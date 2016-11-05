@@ -128,7 +128,7 @@ add() {
 	    mkdir $basedir/src
 	fi
 	for pkg in "$@"; do
-	    arch-nspawn $chroot/root --bind=$basedir/src:/src cower -q -t /src -d -d $pkg
+	    arch-nspawn $chroot/root --bind=$basedir/src:/src cower -q -t /src -f -d -d $pkg
 	done
 	sudo chown $USER -R $basedir/src
 	echo "## All requested packages added"
