@@ -14,10 +14,10 @@ makedepends=('asciidoc' 'git')
 source=("git+$url")
 sha512sums=('SKIP')
 
-pkgver() {
-  cd ${pkgname}
-  git describe --long --tags | sed -r 's/^v//; s/([^-]*-g)/r\1/; s/-/./g'
-}
+#pkgver() {
+#  cd ${pkgname}
+#  git describe --long --tags | sed -r 's/^v//; s/([^-]*-g)/r\1/; s/-/./g'
+#}
 
 build() {
   cd ${pkgname}
