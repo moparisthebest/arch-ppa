@@ -1,0 +1,54 @@
+# Maintainer: Jake <ja.ke@posteo.de>
+# Based on searx-git, thanks to: 
+# Jean Lucas <jean at 4ray dot co> and Reventlov <contact+aur at volcanis dot me>
+
+pkgname=searx
+pkgver=0.10.0
+pkgrel=3
+pkgdesc="A privacy-respecting, hackable metasearch engine"
+arch=('any')
+url="https://asciimoo.github.io/searx/"
+license=('AGPL')
+makedepends=('openssl')
+depends=('python2-flask'
+        'python2-flask-babel'
+        'python2-requests'
+        'python2-lxml'
+        'python2-yaml'
+        'python2-dateutil'
+        'python2-pygments'
+        'python2-certifi'
+        'python2-pyasn1-modules'
+        'python2-ndg-httpsclient'
+        'python2-pysocks')
+conflicts=('searx-git')
+backup=('etc/searx/settings.yml')
+install=searx.install
+source=('https://github.com/asciimoo/searx/archive/v0.10.0.zip'
+        'searx.install'
+        'searx.service')
+sha512sums=('2290dde2e26b8b219e8613c2c79b17a6d0ecd9170cf02b7c6cfe6bc1c0a67ca09b60c18d194e7086701218483ae0941e8e2001fd99eedc36b17a6fead7b4f4a3'
+            'daf98a69d87dc78ea645a02146d67b0a2903b3b219edadf2e3c987c20d0751ac147b72fe185c74bfe3e0b154ed8ee4b9b503e7ca922548fad52157aada05803c'
+            '354ec9c88018108ce0a652647faefaa23afb7afe53b42259a43adf9395b854d02c2b6d350b8d17cf105a9283f62aee0788f7dc96c2676f67c77941d3ef6edc0c')
+
+
+package() {
+  cd $srcdir/searx-$pkgver
+
+  # Allow newer versions of the dependencies
+  sed -i "s|==|>=|g" requirements.txt
+  
+  # Generate a random secret key
+  sed -i -e "s/ultrasecretkey\" # change this!/`openssl rand -hex 32`\"/g" searx/settings.yml
+
+  python2 setup.py install --root=$pkgdir --optimize=1
+  
+  mv $pkgdir/usr/lib/python2.7/site-packages/{README.rst,searx/}
+  mv $pkgdir/usr/lib/python2.7/site-packages/{tests,searx/}
+  
+  mkdir -p $pkgdir/etc/searx
+  mv $pkgdir/usr/lib/python2.7/site-packages/searx/settings.yml $pkgdir/etc/searx/
+  ln -s /etc/searx/settings.yml $pkgdir/usr/lib/python2.7/site-packages/searx/settings.yml
+
+  install -Dm0644 ../searx.service $pkgdir/usr/lib/systemd/system/searx.service
+}
