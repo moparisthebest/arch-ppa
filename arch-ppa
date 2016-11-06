@@ -253,8 +253,8 @@ build() {
 	    return 1;
 	fi
 	sign_packages *.pkg.tar.xz
-	repo-add $repo_name.db.tar.gz *.pkg.tar.xz
-	sign_packages $repo_name.db
+	repose -f -z $repo_name
+	sign_packages $repo_name.db $repo_name.files
     )
 }
 
