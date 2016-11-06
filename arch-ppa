@@ -96,8 +96,7 @@ sign_packages() {
 	set -e
 	cd $(dirname $1)
 	for pkg in "$@"; do
-	    	rm -f "${pkg}.sig"
-		gpg -u 'ECB9B8CBAAC68C03!' --detach-sign --use-agent $pkg
+		gpg -v "${pkg}.sig" 2>/dev/null || (rm -f "${pkg}.sig"; gpg -u 'ECB9B8CBAAC68C03!' --detach-sign --use-agent "$pkg")
 	done
     )
 }
