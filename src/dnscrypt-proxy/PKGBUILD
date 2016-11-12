@@ -1,0 +1,39 @@
+# $Id$
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Contributor: Techlive Zheng <techlivezheng at gmail dot com>
+# Contributor: peace4all <markspost at rocketmail dot com>
+
+pkgname=dnscrypt-proxy
+pkgver=1.7.0
+pkgrel=2
+pkgdesc="A tool for securing communications between a client and a DNS resolver"
+arch=('i686' 'x86_64')
+url="http://dnscrypt.org/"
+license=('custom:ISC')
+depends=('libsodium' 'systemd')
+source=("https://github.com/jedisct1/dnscrypt-proxy.git")
+sha512sums=('SKIP')
+
+prepare() {
+  cd $pkgname-$pkgver
+
+  sed -i 's|/usr/local/sbin|/usr/bin|' dnscrypt-proxy.service
+}
+
+build() {
+  cd $pkgname-$pkgver
+
+  ./configure --prefix=/usr --sbindir=/usr/bin --with-systemd
+  make -j2
+}
+
+package() {
+  cd $pkgname-$pkgver
+  make DESTDIR="$pkgdir" install
+
+  mkdir -p "$pkgdir"/{usr/share/{licenses,doc}/$pkgname,usr/lib/systemd/system}
+  install -m 644 COPYING "$pkgdir"/usr/share/licenses/$pkgname
+  install -m 644 AUTHORS NEWS README README.markdown "$pkgdir"/usr/share/doc/$pkgname
+  install -m 644 dnscrypt-proxy.service "$pkgdir"/usr/lib/systemd/system
+  install -m 644 dnscrypt-proxy.socket "$pkgdir"/usr/lib/systemd/system
+}
