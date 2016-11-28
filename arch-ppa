@@ -137,7 +137,7 @@ add() {
 update() {
     # Update a package and it's dependencies from the AUR
     (
-	set -e
+	#set -e
 	if [ "$#" -eq 0 ]; then
 	    cd $basedir/src
 	    update *
@@ -258,6 +258,14 @@ build() {
     )
 }
 
+rebuild() {
+		setup
+		repo_name=$1
+		mkdir -p $basedir/$repo_name
+		shift
+		arch-nspawn $chroot/$repo_name pacman -Rscn --noconfirm "$@"
+		build "$repo_name" "$@"
+}
 
 if [ "$#" -gt 0 ]; then
     $*
