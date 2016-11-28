@@ -166,8 +166,8 @@ update() {
 	    done
 	    # Check if package has uncommited changes
 	    if [ $(git -C $basedir diff HEAD $basedir/src/$pkg | wc -l) -gt 0 ]; then
-		echo "Package $pkg has uncommited changes. Commit or discard those changes first."
-		return 1
+		echo "warning: Package $pkg has uncommited changes. Commit or discard those changes first."
+		#return 1
 	    fi
 	    # Use a temporary dir to download all PKGBUILDS atomically
             [ -z "$tmp_dl" ] && tmp_dl=`mktemp -d`
