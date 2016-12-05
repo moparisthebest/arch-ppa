@@ -1,0 +1,56 @@
+_homedir=/var/lib/libresonic
+_playlistdir=/var/playlists
+
+post_install() {
+
+    getent group libresonic &>/dev/null || groupadd --system libresonic > /dev/null
+    getent passwd libresonic &>/dev/null || useradd --system \
+                                                  --home-dir /var/lib/libresonic \
+                                                  --shell /usr/bin/nologin \
+                                                  --gid libresonic \
+                                                  --groups audio \
+                                                  --comment "Libresonic user" \
+                                                  libresonic > /dev/null
+    passwd --lock libresonic &> /dev/null
+
+    fix_permissions
+    echo "*************************************************"
+    echo "* Edit /etc/libresonic.conf to configure libresonic *"
+    echo "*************************************************"
+
+    systemctl daemon-reload
+}
+
+pre_remove() {
+    if [[ `systemctl is-active libresonic` == 'active' ]]; then
+        systemctl stop libresonic
+    fi
+}
+
+post_remove() {
+    getent passwd libresonic &>/dev/null && userdel libresonic &>/dev/null
+    getent group libresonic &>/dev/null && groupdel libresonic &>/dev/null
+}
+
+fix_permissions() {
+    chown -R libresonic:libresonic ${_homedir}
+    chown libresonic:libresonic ${_playlistdir}
+}
+
+pre_upgrade() {
+    rm -f /tmp/libresonic-was-active
+    if [[ `systemctl is-active libresonic` == 'active' ]]; then
+        touch /tmp/libresonic-was-active
+        echo "Stopping libresonic"
+        systemctl stop libresonic
+    fi
+}
+
+post_upgrade() {
+    post_install
+    if [ -e /tmp/libresonic-was-active ]; then
+        echo "Starting libresonic"
+        systemctl start libresonic
+        rm /tmp/libresonic-was-active
+    fi
+}
