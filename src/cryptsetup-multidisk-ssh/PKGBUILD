@@ -1,0 +1,18 @@
+# Contributor: moparisthebest <admin dot archlinux AT moparisthebest dot com>
+
+pkgname=cryptsetup-multidisk-ssh
+pkgver=1.0
+pkgrel=1
+pkgdesc='Handle multiple encrypted root devices with ssh shell'
+arch=('any')
+license=('GPL3')
+optional=('mkinitcpio-dropbear' 'mkinitcpio-tinyssh')
+url="https://github.com/moparisthebest/archlinux_encrypthook"
+source=("https://codeload.github.com/moparisthebest/archlinux_encrypthook/tar.gz/v$pkgver" "encrypt_install")
+sha256sums=('e38eed40eadfa7dadd697cbe6d06845edad35fcc37f910e5323d5b89fce5ef67'
+            'f97843c8ea18229361f89f13159c65bb4a0fc881589cc09a0433c66cf731052a')
+
+package() {
+	install -D -m644 "archlinux_encrypthook-$pkgver/encrypt_hook"    "${pkgdir}"/usr/lib/initcpio/hooks/encrypt-multidisk-ssh
+	install -D -m644 encrypt_install "${pkgdir}"/usr/lib/initcpio/install/encrypt-multidisk-ssh
+}
