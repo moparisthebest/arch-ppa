@@ -1,12 +1,15 @@
-pkgbase = cryptsetup-multidisk
-	pkgdesc = Handle multiple encrypted root devices
+pkgbase = cryptsetup-multidisk-ssh
+	pkgdesc = Handle multiple encrypted root devices with ssh shell
 	pkgver = 1.0
 	pkgrel = 1
-	url = https://github.com/moparisthebest/archlinux_encrypthook
+	url = https://github.com/moparisthebest/cryptsetup-multidisk-ssh
 	arch = any
 	license = GPL3
-	source = https://codeload.github.com/moparisthebest/archlinux_encrypthook/tar.gz/v1.0
-	sha256sums = e38eed40eadfa7dadd697cbe6d06845edad35fcc37f910e5323d5b89fce5ef67
+	depends = cryptsetup
+	optdepends = mkinitcpio-dropbear: Allow the encryptssh hook to unlock a root container remotely using dropbear
+	optdepends = mkinitcpio-tinyssh: Allow the encryptssh hook to unlock a root container remotely using tinyssh
+	source = https://codeload.github.com/moparisthebest/cryptsetup-multidisk-ssh/tar.gz/v1.0
+	sha256sums = a886feb187c398048f49e15b4ead113caa5dfb568ed842e9bbdc556f9bdff079
 
-pkgname = cryptsetup-multidisk
+pkgname = cryptsetup-multidisk-ssh
 
