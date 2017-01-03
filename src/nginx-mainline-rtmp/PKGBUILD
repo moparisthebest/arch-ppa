@@ -2,11 +2,13 @@
 # Maintainer:  Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
 # Contributor: Sébastien Luttringer
 # Contributor: Drew DeVault
+# Contributor: Florent Thiéry <fthiery@gmail.com>
+# Contributor: moparisthebest <admin dot archlinux AT moparisthebest dot com>
 
 pkgname=nginx-mainline-rtmp
-pkgver=1.11.7
+pkgver=1.11.8
 pkgrel=1
-pkgdesc='Lightweight HTTP server and IMAP/POP3 proxy server, mainline release'
+pkgdesc='Lightweight HTTP server and IMAP/POP3 proxy server, mainline-rtmp release'
 arch=('i686' 'x86_64' 'armv7h')
 url='https://nginx.org'
 license=('custom')
@@ -21,20 +23,25 @@ backup=('etc/nginx/fastcgi.conf'
         'etc/nginx/scgi_params'
         'etc/nginx/uwsgi_params'
         'etc/nginx/win-utf'
-        'etc/logrotate.d/nginx')
+        'etc/logrotate.d/nginx'
+        'usr/share/nginx/html/crossdomain.xml')
 install=nginx.install
 provides=('nginx')
 conflicts=('nginx')
 source=($url/download/nginx-$pkgver.tar.gz{,.asc}
         https://github.com/arut/nginx-rtmp-module/archive/v1.1.10.tar.gz
         service
-        logrotate)
+        logrotate
+        crossdomain.xml
+        nginx.conf)
 validpgpkeys=('B0F4253373F8F6F510D42178520A9993A1C052F8') # Maxim Dounin <mdounin@mdounin.ru>
-md5sums=('2b4a4874b8fedbd5ba7829579d1f5973'
+md5sums=('8f68f49b6db510e567bba9e0c271a3ac'
          'SKIP'
          '2e82501ed423a901ab64bfe2228a0666'
          'ce9a06bcaf66ec4a3c4eb59b636e0dfd'
-         'd6a6d4d819f03a675bacdfabd25aa37e')
+         'd6a6d4d819f03a675bacdfabd25aa37e'
+         '4d2e9c834fa2e60cd8b23185b93d2e2e'
+         '35a9c62e780ab952fb89b613f0af97cd')
 
 _common_flags=(
   --with-pcre-jit
@@ -112,6 +119,8 @@ package() {
   install -d "$pkgdir"/usr/share/nginx
   mv "$pkgdir"/etc/nginx/html/ "$pkgdir"/usr/share/nginx
 
+  install -Dm644 ../nginx.conf "$pkgdir"/etc/nginx/nginx.conf
+  install -Dm644 ../crossdomain.xml "$pkgdir"/usr/share/nginx/html/crossdomain.xml
   install -Dm644 ../logrotate "$pkgdir"/etc/logrotate.d/nginx
   install -Dm644 ../service "$pkgdir"/usr/lib/systemd/system/nginx.service
   install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$provides/LICENSE
