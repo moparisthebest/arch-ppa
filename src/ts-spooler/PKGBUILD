@@ -1,0 +1,23 @@
+# Maintainer: gnomeye <gnomeye at gmail dot com>
+pkgname=ts-spooler
+pkgver=1.0
+pkgrel=1
+pkgdesc="task spooler. A simple unix batch system"
+arch=('i686' 'x86_64')
+url="http://vicerveza.homeunix.net/~viric/soft/ts/"
+depends=('glibc')
+license=('GPL')
+source=(http://vicerveza.homeunix.net/~viric/soft/ts/ts-${pkgver}.tar.gz)
+sha256sums=('4f53e34fff0bb24caaa44cdf7598fd02f3e5fa7cacaea43fa0d081d03ffbb395')
+
+build() {
+  cd "$srcdir/ts-$pkgver"
+  make
+}
+
+package() {
+  cd "$srcdir/ts-$pkgver"
+  install -D -m755 ts $pkgdir/usr/bin/tsp
+  install -D -m644 ts.1 $pkgdir/usr/share/man/man1/tsp.1
+}
+
