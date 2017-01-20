@@ -2,16 +2,16 @@
 # Contributor: Danny Su <contact@dannysu.com>
 
 pkgname=duplicati-latest
-pkgver=2.0.1.42
+pkgver=2.0.1.43
 pkgrel=1
 pkgdesc='A free backup client that securely stores encrypted, incremental, compressed backups on cloud storage services and remote file servers'
 url='http://duplicati.com'
 license=('LGPL')
 install='duplicati.install'
-source=("https://github.com/duplicati/duplicati/releases/download/v2.0.1.42-2.0.1.42_canary_2017-01-16/duplicati-2.0.1.42_canary_2017-01-16.zip" 'duplicati.service')
-sha1sums=('fde4ecfff9cc0b2c1e97e4ccb593717ca9e353dc'
+source=("https://github.com/duplicati/duplicati/releases/download/v2.0.1.43-2.0.1.43_canary_2017-01-19/duplicati-2.0.1.43_canary_2017-01-19.zip" 'duplicati.service')
+sha1sums=('f34b8ffd1b1a1e7308d435af9f4a380e1c40370c'
           '8298fe7fbe3ba71a9773220ab236eb6350e89f87')
-sha256sums=('4e8a02b8e53aad0b439f3db0fba35cada003028219edfc828069012bfc985f02'
+sha256sums=('82ffc08b24419b8f188a141703defef09347cb02a1541d9d443b58a64dbb0e7f'
             '3237249cb9de137c3284a5cd92a451f3a49ec2183c6254be4b5ef7969e04e4a1')
 arch=('i686' 'x86_64')
 depends=('gtk-sharp-2' 'mono')
