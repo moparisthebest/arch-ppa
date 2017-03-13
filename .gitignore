@@ -6,4 +6,4 @@ src/**/*.xz
 src/**/*.log
 aur
 broke
-
+.SRCINFO

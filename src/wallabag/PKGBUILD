@@ -1,14 +1,14 @@
 # Maintainer: Philipp Schmitt (philipp<at>schmitt<dot>co)
 
 pkgname=wallabag
-pkgver=2.1.4
+pkgver=2.2.2
 pkgrel=1
 pkgdesc='Self hostable application for saving web pages'
 arch=('any')
 url='http://www.wallabag.org/'
 license=('MIT')
 depends=(
-    'php>=5.3.3'
+    'php>=5.5'
     'php-gd'
     'php-tidy'
     'pcre'
@@ -21,9 +21,8 @@ optdepends=(
 )
 install="$pkgname.install"
 options=(!strip)
-source=("https://framabag.org/wallabag-release-${pkgver}.tar.gz")
-#source=("${pkgname}-release-${pkgver}.tar.gz::http://wllbg.org/latest-v2-package") # you may try this URL, if the above one is not available
-sha256sums=('eb64205a4d7c161527edd08bed22e8dd9799fe8a4130c5964c18cba3a94c9768')
+source=("https://static.wallabag.org/releases/wallabag-release-${pkgver}.tar.gz")
+sha256sums=('40d98bd556116dbc28f92339f0e5b93836ece87dcb01e7aaa628ea98855a1f51')
 backup=("etc/webapps/${pkgname}/parameters.yml"
         "usr/share/webapps/${pkgname}/parameters.yml"
         "var/lib/${pkgname}/data/db/wallabag.sqlite"
@@ -46,6 +45,8 @@ package() {
     mv "${pkgdir}/usr/share/webapps/${pkgname}/"{data,var} "$_VAR_DIR"
     ln -s "/var/lib/${pkgname}/"{data,var} "${pkgdir}/usr/share/webapps/${pkgname}/"
     chown -R http:http "$_VAR_DIR"
+
+    sed -i "${_VAR_DIR}/var/bootstrap.php.cache" -e "s@__DIR__.'/../@'/usr/share/webapps/${pkgname}/@"
 
     chown -R http:http "${pkgdir}/usr/share/webapps/${pkgname}"
 }
