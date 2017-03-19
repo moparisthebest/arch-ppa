@@ -260,14 +260,40 @@ build() {
 
 rebuild() {
 		(
-		set -e
-		setup
-		repo_name=$1
+	set -e
+	if [ "$#" -lt 1 ]; then
+	    echo "Must specify repository name to build (and optional package list to include)"
+	    return 1
+	fi
+	setup
+	repo_name=$1
 		mkdir -p $basedir/$repo_name
 		shift
-		arch-nspawn $chroot/$repo_name pacman -Rscn --noconfirm "$@"
+		arch-nspawn $chroot/$repo_name pacman -Rscn --noconfirm "$@" || true
 		build "$repo_name" "$@"
 		)
+}
+
+build_changed() {
+    (
+    # git diff-tree --no-commit-id --name-status -r "$commit" | grep -v ^D | grep PKGBUILD$ | sed -e 's@/PKGBUILD$@@' -e 's@.*/@@' | xargs -n1 arch-nspawn chroot/aur pacman -Rscn --noconfirm
+    # git diff-tree --no-commit-id --name-status -r "$commit" | grep -v ^D | grep PKGBUILD$ | sed -e 's@/PKGBUILD$@@' -e 's@.*/@@' | xargs -n1 ./arch-ppa build aur
+	set -e
+	if [ "$#" -lt 1 ]; then
+	    echo "Must specify repository name to build (and optional package list to include)"
+	    return 1
+	fi
+	setup
+	repo_name=$1
+		mkdir -p $basedir/$repo_name
+		shift
+		commit="$1"
+		[ "$commit" == "" ] && commit=HEAD
+    changed_pkgbuilds="$(git diff-tree --no-commit-id --name-status -r "$commit" | grep -v ^D | grep PKGBUILD$ | sed -e 's@/PKGBUILD$@@' -e 's@.*/@@' | tr '\n' ' ')"
+    # remove them    
+    arch-nspawn $chroot/$repo_name pacman -Rscn --noconfirm $changed_pkgbuilds || true
+		build "$repo_name" $changed_pkgbuilds
+    )
 }
 
 if [ "$#" -gt 0 ]; then

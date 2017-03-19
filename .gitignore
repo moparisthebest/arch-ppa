@@ -7,3 +7,4 @@ src/**/*.log
 aur
 broke
 .SRCINFO
+build_single_nofail.sh

@@ -3,7 +3,7 @@
 
 pkgname='python2-axolotl-git'
 _pkgname='python-axolotl'
-pkgver=r39.9585d72
+pkgver=0.1.35.r0.g72f7c44
 pkgrel=1
 pkgdesc="Python port of libaxolotl"
 url="https://github.com/tgalal/python-axolotl"
