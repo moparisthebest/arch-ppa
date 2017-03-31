@@ -1,0 +1,126 @@
+#!/bin/bash
+
+# requires:
+# https://aur.archlinux.org/packages/clean-chroot-manager
+# https://aur.archlinux.org/packages/aurutils
+
+basedir="$(pwd)"
+src_dir="${basedir}/src"
+repo_name=aur
+pkg_dir="${basedir}/$repo_name"
+ccm='sudo ccm64'
+ccm_repo='/scratch/chroot64/root/repo'
+aurweb='https://aur.archlinux.org'
+
+if [ `whoami` == 'root' ]; then
+   echo "Must not be run as root."
+   exit 1;
+fi
+
+[ -e ppa.cfg ] && source ppa.cfg
+
+clone_update_aur() {
+    declare -r startdir=$PWD
+
+    while IFS= read -r; do
+        if [[ -d $REPLY ]]
+        then
+
+            if [[ ! -d $REPLY/.git ]]
+            then
+                rm -rf tmp
+                git clone "$aurweb/$REPLY".git tmp
+                mv tmp/.git $REPLY
+                rm -rf tmp
+            fi
+
+            cd "$REPLY"
+
+            git fetch -v # returns 0 even if nothing was fetched
+
+            if [[ $(git rev-parse HEAD) != $(git rev-parse '@{upstream}') ]]; then
+                if [[ -d $logdir ]]; then
+                    git --no-pager log --patch --stat '..@{upstream}' >> "$logdir/$REPLY".patch
+                fi
+
+                git reset --hard HEAD
+                git merge
+            fi
+
+            cd "$startdir"
+        else
+            git clone "$aurweb/$REPLY".git
+        fi
+    done
+}
+
+add() {
+    cd "$src_dir"
+    aurchain "$@" | clone_update_aur
+}
+
+update() {
+    cd "$src_dir"
+    if [ "$#" -gt 0 ]; then
+        aurchain "$@" | clone_update_aur
+    else
+        aurchain * | clone_update_aur
+    fi
+}
+
+sign_packages() {
+    cd "$pkg_dir"
+    for pkg in "$@"; do
+        gpg -v "${pkg}.sig" 2>/dev/null || (rm -f "${pkg}.sig"; gpg --detach-sign --use-agent "$pkg")
+    done
+}
+
+build() {
+    cd "$src_dir"
+    if [ "$#" -gt 0 ]; then
+        $ccm n
+        $ccm c
+        for dir in $(aurqueue "$@")
+        do
+            cd $dir
+            $ccm s
+            cd "$src_dir"
+        done
+
+        # save packages
+        mv "$ccm_repo"/*pkg.tar* "$pkg_dir"
+        $ccm n
+
+        cd "$pkg_dir"
+        sign_packages *.pkg.tar*
+        repose -f -z $repo_name
+        sign_packages $repo_name.db $repo_name.files
+    else
+        build *
+    fi
+}
+
+build_deps() {
+    cd "$src_dir"
+    if [ "$#" -gt 0 ]; then
+        build $(aurchain "$@")
+    else
+        # regular build? if we are building all no use looking up deps...
+        build
+    fi
+}
+
+build_changed() {
+    commit="$1"
+    [ "$commit" == "" ] && commit=HEAD
+    build $(git diff-tree --no-commit-id --name-status -r "$commit" | grep -v ^D | grep PKGBUILD$ | sed -e 's@/PKGBUILD$@@' -e 's@.*/@@' | tr '\n' ' ')
+}
+
+if [ "$#" -gt 0 ]; then
+    [ -d "$src_dir" ] || mkdir -p "$src_dir"
+    [ -d "$pkg_dir" ] || mkdir -p "$pkg_dir"
+    $*
+else
+    echo "Must specify a command, eg: add, build, list, clean"
+    exit 1
+fi
