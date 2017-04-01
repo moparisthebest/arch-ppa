@@ -1,5 +1,6 @@
 chroot
 *~
+*.kate-swp
 pkg
 src/**/*.gz
 src/**/*.xz

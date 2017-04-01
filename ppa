@@ -9,7 +9,7 @@ src_dir="${basedir}/src"
 repo_name=aur
 pkg_dir="${basedir}/$repo_name"
 ccm='sudo ccm64'
-ccm_repo='/scratch/chroot64/root/repo'
+ccm_root='/scratch/chroot64'
 aurweb='https://aur.archlinux.org'
 
 if [ `whoami` == 'root' ]; then
@@ -78,23 +78,42 @@ sign_packages() {
 build() {
     cd "$src_dir"
     if [ "$#" -gt 0 ]; then
-        $ccm n
-        $ccm c
+        $ccm d
+        failed=''
+        # create .SRCINFO, so aurqueue can use it next
+        for dir in "$@"
+        do
+            cd $dir
+            makepkg --printsrcinfo > .SRCINFO
+            cd "$src_dir"
+        done
         for dir in $(aurqueue "$@")
         do
             cd $dir
-            $ccm s
+            $ccm s || failed="$failed $dir"
             cd "$src_dir"
         done
 
         # save packages
-        mv "$ccm_repo"/*pkg.tar* "$pkg_dir"
-        $ccm n
-
         cd "$pkg_dir"
-        sign_packages *.pkg.tar*
+        for pkg in "$ccm_root"/root/repo/*pkg.tar*
+        do
+            mv "$pkg" .
+            sign_packages "$(basename "$pkg")"
+        done
         repose -f -z $repo_name
         sign_packages $repo_name.db $repo_name.files
+
+        if [ "$failed" == "" ]
+        then
+            # success!, nuke the chroot
+            $ccm n
+        else
+            # some failures, just delete the packages
+            $ccm d
+            echo "failed packages:$failed"
+        fi
+
     else
         build *
     fi
