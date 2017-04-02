@@ -2,7 +2,7 @@
 
 _pkgname=biboumi
 pkgname="$_pkgname-git"
-pkgver=r897.45f7396
+pkgver=r993.15de333
 pkgrel=1
 pkgdesc="XMPP gateway to IRC"
 arch=('i686' 'x86_64' 'armv7h')

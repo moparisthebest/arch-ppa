@@ -2,7 +2,7 @@
 
 _pkgname=litesql
 pkgname="$_pkgname-git"
-pkgver=r644.7a76939
+pkgver=r647.a83e253
 pkgrel=1
 pkgdesc="C++ ORM for SQLite3, PostgreSQL, MySQL and Oracle"
 arch=('i686' 'x86_64' 'armv7h')
