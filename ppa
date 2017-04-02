@@ -37,15 +37,8 @@ clone_update_aur() {
             cd "$REPLY"
 
             git fetch -v # returns 0 even if nothing was fetched
-
-            if [[ $(git rev-parse HEAD) != $(git rev-parse '@{upstream}') ]]; then
-                if [[ -d $logdir ]]; then
-                    git --no-pager log --patch --stat '..@{upstream}' >> "$logdir/$REPLY".patch
-                fi
-
-                git reset --hard HEAD
-                git merge
-            fi
+            git reset --hard HEAD
+            git merge
 
             cd "$startdir"
         else

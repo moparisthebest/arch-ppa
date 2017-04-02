@@ -4,7 +4,7 @@
 # Contributor: Roberto Calabrese <robertocalabrese75 [at] gmail.com>
 
 pkgname=libgcj17-bin
-pkgver=6.3.0_8
+pkgver=6.3.0_11
 pkgrel=1
 pkgdesc="Dynamically load and interpret java class files. Built from binary \
 executables available in Debian repositories."
@@ -14,10 +14,10 @@ license=(GPL)
 conflicts=(gcc-gcj)
 depends=(zlib)
 
-source_i686=(http://httpredir.debian.org/debian/pool/main/g/gcc-6/${pkgname%-*}_${pkgver%_*}-${pkgver##*_}_i386.deb)
-source_x86_64=(http://httpredir.debian.org/debian/pool/main/g/gcc-6/${pkgname%-*}_${pkgver%_*}-${pkgver##*_}_amd64.deb)
-sha1sums_i686=('6aad7cc2eee10e84b08d801000db52a67cc59bcb')
-sha1sums_x86_64=('c31fdd2970a62a377c11018fede8f684b7dd5a06')
+source_i686=(http://ftp.debian.org/debian/pool/main/g/gcc-6/${pkgname%-*}_${pkgver%_*}-${pkgver##*_}_i386.deb)
+source_x86_64=(http://ftp.debian.org/debian/pool/main/g/gcc-6/${pkgname%-*}_${pkgver%_*}-${pkgver##*_}_amd64.deb)
+sha1sums_i686=('c465158f5afd97ec6e698686c6e69fc82d799c4c')
+sha1sums_x86_64=('603862e413537a9e5682419baaef765bfb4aa0d8')
 
 prepare() {
   tar xf data.tar.*

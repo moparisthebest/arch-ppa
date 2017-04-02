@@ -8,6 +8,7 @@ url='http://github.com/erikkaashoek/Comskip'
 arch=('x86_64' 'i686')
 license=('GPL3')
 depends=('ffmpeg' 'argtable')
+makedepends=(git)
 source=("${_gitname}::git+https://github.com/erikkaashoek/Comskip.git#branch=master")
 sha256sums=('SKIP')
 
