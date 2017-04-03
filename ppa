@@ -128,6 +128,16 @@ build_changed() {
     build $(git diff-tree --no-commit-id --name-status -r "$commit" | grep -v ^D | grep PKGBUILD$ | sed -e 's@/PKGBUILD$@@' -e 's@.*/@@' | tr '\n' ' ')
 }
 
+build_changed_deps() {
+    commit="$1"
+    [ "$commit" == "" ] && commit=HEAD
+    build_deps $(git diff-tree --no-commit-id --name-status -r "$commit" | grep -v ^D | grep PKGBUILD$ | sed -e 's@/PKGBUILD$@@' -e 's@.*/@@' | tr '\n' ' ')
+}
+
+reinstall() {
+    paclist $repo_name | cut -d' ' -f1 | xargs sudo pacman -S --noconfirm
+}
+
 if [ "$#" -gt 0 ]; then
     [ -d "$src_dir" ] || mkdir -p "$src_dir"
     [ -d "$pkg_dir" ] || mkdir -p "$pkg_dir"
