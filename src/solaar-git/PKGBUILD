@@ -9,7 +9,7 @@ arch=('any')
 url="http://pwr.github.io/Solaar/"
 license=('GPL2')
 
-depends=('python' 'python-pyudev' 'python-gobject' 'pygtk')
+depends=('python' 'python-pyudev' 'python-gobject' 'pygtk' 'python-six')
 makedepends=('git')
 provides=('solaar')
 conflicts=('solaar')
