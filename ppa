@@ -26,15 +26,16 @@ clone_update_aur() {
         if [[ -d $REPLY ]]
         then
 
-            if [[ ! -d $REPLY/.git ]]
+            if [[ ! -d $REPLY/.git-nosub ]]
             then
                 rm -rf tmp
                 git clone "$aurweb/$REPLY".git tmp
-                mv tmp/.git $REPLY
+                mv tmp/.git "$REPLY"/.git-nosub
                 rm -rf tmp
             fi
 
             cd "$REPLY"
+            mv .git-nosub .git
 
             git fetch -v # returns 0 even if nothing was fetched
             git reset --hard HEAD
@@ -44,8 +45,10 @@ clone_update_aur() {
         else
             git clone "$aurweb/$REPLY".git
         fi
-        # .git folders make it a git submodule, we don't want that
-        rm -rf "$REPLY"/.git/
+        # .git folders make it a git submodule, we don't want that, need to gitignore .git-nosub
+        mv "$REPLY"/.git "$REPLY"/.git-nosub
+        # we don't ever want to track these
+        rm -f "$REPLY"/.SRCINFO
     done
 }
 
