@@ -44,6 +44,8 @@ clone_update_aur() {
         else
             git clone "$aurweb/$REPLY".git
         fi
+        # .git folders make it a git submodule, we don't want that
+        rm -rf "$REPLY"/.git/
     done
 }
 
