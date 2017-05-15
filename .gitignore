@@ -9,3 +9,4 @@ aur
 broke
 .SRCINFO
 build_single_nofail.sh
+.git-nosub
