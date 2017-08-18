@@ -1,31 +1,31 @@
 # Maintainer: Urs Wolfer <uwolfer @ fwo.ch>
 
-pkgname=intellij-idea-ultimate-edition
-pkgver=2017.1.4
-_buildver=171.4694.23
-pkgrel=1
-pkgdesc="An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity."
+pkgbase=intellij-idea-ultimate-edition
+pkgname=(intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre)
+pkgver=2017.2.2
+_buildver=172.3757.52
+pkgrel=2
 arch=('any')
+pkgdesc="An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity."
 url="https://www.jetbrains.com/idea/"
-backup=("usr/share/${pkgname}/bin/idea.vmoptions" "usr/share/${pkgname}/bin/idea64.vmoptions" "usr/share/${pkgname}/bin/idea.properties")
 license=('Commercial')
 depends=('java-environment' 'giflib' 'libxtst')
+makedepends=('rsync')
 options=(!strip)
-source=(https://download.jetbrains.com/idea/ideaIU-$pkgver-no-jdk.tar.gz \
-        intellijidea.sh \
+source=(https://download.jetbrains.com/idea/ideaIU-$pkgver.tar.gz \
         jetbrains-idea.desktop
 )
-sha256sums=('44d9f92082799c7094d6d152465b6159a783bcddeafeaabc06eb5fa6f5d2d92f'
-            'ed7883b33b6fa9f2e303e5549bd238ceb552ec11ca116730271a58aca685229a'
+sha256sums=('b5f33894abbf31786a17779bc11bfbe05f46cbbcd516fc2d48590411c44be95c'
             '83af2ba8f9f14275a6684e79d6d4bd9b48cd852c047dacfc81324588fa2ff92b')
-package() {
+package_intellij-idea-ultimate-edition() {
+  backup=("usr/share/${pkgname}/bin/idea.vmoptions" "usr/share/${pkgname}/bin/idea64.vmoptions" "usr/share/${pkgname}/bin/idea.properties")
   cd "$srcdir"
 
-  install -d -m755 "$pkgdir"/usr/{bin,share}
-  cp -a "idea-IU-$_buildver" "$pkgdir"/usr/share/"$pkgname"
+  install -d -m755 "${pkgdir}"/usr/{bin,share}
+  rsync -rtl "idea-IU-${_buildver}/" "${pkgdir}/usr/share/${pkgbase}" --exclude=/jre64
 
   # make sure that all files are owned by root
-  chown -R root:root "$pkgdir"/usr/share
+  chown -R root:root "${pkgdir}/usr/share"
 
   find "$pkgdir"/usr/share/"$pkgname" -type d -exec chmod 0755 {} ';'
   find "$pkgdir"/usr/share/"$pkgname" -type f -exec chmod 0644 {} ';'
@@ -33,13 +33,20 @@ package() {
   chmod +x "$pkgdir"/usr/share/"$pkgname"/bin/idea.sh
   chmod +x "$pkgdir"/usr/share/"$pkgname"/bin/fsnotifier
   chmod +x "$pkgdir"/usr/share/"$pkgname"/bin/fsnotifier64
+  chmod +x "$pkgdir"/usr/share/"$pkgname"/bin/fsnotifier-arm
 
-  install -D -m755 "$srcdir"/intellijidea.sh "$pkgdir"/usr/bin/"$pkgname"
+  ln -s /usr/share/"$pkgname"/bin/idea.sh "$pkgdir"/usr/bin/"$pkgname"
   install -D -m644 "$srcdir"/jetbrains-idea.desktop "$pkgdir"/usr/share/applications/jetbrains-idea.desktop
   install -D -m644 "$srcdir"/idea-IU-$_buildver/bin/idea.png "$pkgdir"/usr/share/pixmaps/"$pkgname".png
 
   # workaround FS#40934
   sed -i 's|lcd|on|'  "$pkgdir"/usr/share/"$pkgname"/bin/*.vmoptions
+}
+
+package_intellij-idea-ultimate-edition-jre() {
+  arch=('x86_64')
+  install -d -m 755 "${pkgdir}/usr/share/${pkgbase}"
+  rsync -rtl "${srcdir}/idea-IU-${_buildver}/jre64" "${pkgdir}/usr/share/${pkgbase}"
 }
 
 # vim:set ts=2 sw=2 et:
