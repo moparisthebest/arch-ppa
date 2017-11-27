@@ -2,7 +2,7 @@
 
 _pkgbase=stubby
 pkgname=stubby-git
-pkgver=2543.81bfa684
+pkgver=2550.3a1cb30c
 pkgrel=1
 pkgdesc="DNS Privacy Daemon"
 arch=('x86_64' 'i686')
@@ -14,7 +14,7 @@ makedepends=('git')
 source=("$_pkgbase::git+https://github.com/getdnsapi/getdns.git")
 sha256sums=('SKIP')
 
-backup=('usr/etc/stubby/stubby.yml')
+backup=('etc/stubby/stubby.yml')
 install=install
 
 pkgver() {
@@ -27,7 +27,7 @@ prepare() {
   git submodule update --init
   libtoolize -ci
   autoreconf -fi
-  ./configure --prefix=/usr --without-libidn --enable-stub-only --with-ssl=/usr --with-stubby
+  ./configure --prefix=/usr --sysconfdir=/etc --without-libidn --enable-stub-only --with-ssl=/usr --with-stubby
 }
 
 build() {
@@ -39,11 +39,11 @@ package() {
   cd "$srcdir/$_pkgbase"
   make DESTDIR="${pkgdir}" install
 
+  # remove empty useless dir
+  rm -rf "${pkgdir}/usr/var/"
+
   install -D -m644 LICENSE "${pkgdir}/usr/share/licenses/$_pkgbase/LICENSE"
 
   install -D -m644 stubby/systemd/stubby.service "${pkgdir}/usr/lib/systemd/system/stubby.service"
-  install -D -m644 stubby/systemd/stubby.conf "${pkgdir}/usr/lib/tmpfiles.d/stubby.conf"
-
-  mkdir -p "${pkgdir}/etc/stubby"
-  ln -s /usr/etc/stubby/stubby.yml "${pkgdir}/etc/stubby/stubby.yml"
+  #install -D -m644 stubby/systemd/stubby.conf "${pkgdir}/usr/lib/tmpfiles.d/stubby.conf"
 }
