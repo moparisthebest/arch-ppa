@@ -1,7 +1,7 @@
 # Maintainer: ajs124
 
 pkgname=evdi-git
-pkgver=1.5.0.r0.ge7a08d0
+pkgver=1.5.0.r11.ga73092d
 pkgrel=1
 pkgdesc="A Linux® kernel module that enables management of multiple screens. Git version."
 arch=('i686' 'x86_64')
@@ -24,6 +24,8 @@ pkgver() {
 build() {
 	# We only need to build the library in this step, dmks will build the module
 	cd ${pkgname/-git/}/library
+	# hotfix mentioned at https://github.com/DisplayLink/evdi/issues/117
+	sed -i -e 's/#if KERNEL_VERSION(4, 16, 0) <= LINUX_VERSION_CODE/#if KERNEL_VERSION(4, 15, 0) <= LINUX_VERSION_CODE/' ../module/evdi_connector.c
 	make
 }
 
