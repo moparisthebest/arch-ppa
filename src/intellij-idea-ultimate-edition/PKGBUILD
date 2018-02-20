@@ -1,19 +1,18 @@
 # Maintainer: Urs Wolfer <uwolfer @ fwo.ch>
 
 pkgbase=intellij-idea-ultimate-edition
-pkgname=(intellij-idea-ultimate-edition)
-pkgver=2017.3
-_buildver=173.3727.127
+pkgname=(intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre)
+pkgver=2017.3.4
+_buildver=173.4548.28
 pkgrel=1
 arch=('any')
 pkgdesc="An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity."
 url="https://www.jetbrains.com/idea/"
 license=('Commercial')
 options=(!strip)
-install=$pkgbase.install
 source=("https://download.jetbrains.com/idea/ideaIU-$pkgver.tar.gz"
         "jetbrains-idea.desktop")
-sha256sums=('f75db2b4014d115f185bf867a1e5a6b4dae289444bf74e46b58ad2844e07d325'
+sha256sums=('d1f33796fa317c04e0618a9bd329f944355c3374011815c398384ca5cc57bfbc'
             '83af2ba8f9f14275a6684e79d6d4bd9b48cd852c047dacfc81324588fa2ff92b')
 
 prepare() {
@@ -30,6 +29,9 @@ package_intellij-idea-ultimate-edition() {
 
   install -d "$pkgdir"/{opt/$pkgname,usr/bin}
   mv idea-IU-${_buildver}/* "$pkgdir"/opt/$pkgbase
+
+  # https://youtrack.jetbrains.com/issue/IDEA-185828
+  chmod +x "$pkgdir"/opt/$pkgbase/plugins/maven/lib/maven3/bin/mvn
 
   ln -s /opt/$pkgname/bin/idea.sh "$pkgdir"/usr/bin/$pkgname
   install -D -m644 "$srcdir"/jetbrains-idea.desktop "$pkgdir"/usr/share/applications/jetbrains-idea.desktop
