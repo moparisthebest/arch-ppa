@@ -51,11 +51,11 @@ package() {
   install -d "$pkgdir"/usr/share/licenses/java$_major-$_pkgname
 
   msg2 "Removing redundancies..."
-  rm -r lib/desktop/icons/HighContrast
-  rm -r lib/desktop/icons/HighContrastInverse
-  rm -r lib/desktop/icons/LowContrast
-  rm  lib/fontconfig.*.bfc
-  rm  lib/fontconfig.*.properties.src
+  rm -rf lib/desktop/icons/HighContrast
+  rm -rf lib/desktop/icons/HighContrastInverse
+  rm -rf lib/desktop/icons/LowContrast
+  rm  -f lib/fontconfig.*.bfc
+  rm  -f lib/fontconfig.*.properties.src
 
   msg2 "Moving contents..."
   mv * "$pkgdir"/$_jvmdir
