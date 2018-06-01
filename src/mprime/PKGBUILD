@@ -4,7 +4,7 @@
 
 pkgname=mprime
 pkgver=294b7
-pkgrel=1
+pkgrel=4
 pkgdesc="A GIMPS, distributed computing project client, dedicated to finding Mersenne primes."
 arch=('x86_64')
 url="http://www.mersenne.org"
