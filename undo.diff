@@ -1,194 +1,18 @@
 diff --git a/src/ampache-git/PKGBUILD b/src/ampache-git/PKGBUILD
-index 210d6d9..90e9ba1 100644
+index d3c46f5..90e9ba1 100644
 --- a/src/ampache-git/PKGBUILD
 +++ b/src/ampache-git/PKGBUILD
 @@ -3,8 +3,8 @@
  
  pkgname=ampache-git
  _gitname=ampache
--pkgver=3.8.2.291.g10b5a63f
+-pkgver=3.8.2.357.g3df9a295
 -pkgrel=1
 +pkgver=3.8.1.7.g799165a
 +pkgrel=2
  pkgdesc="A PHP-based tool for managing and playing your audio/video files via a web interface"
  arch=('i686' 'x86_64')
  url="http://www.ampache.org/"
-diff --git a/src/biboumi-git/PKGBUILD b/src/biboumi-git/PKGBUILD
-index 37a1813..7015177 100644
---- a/src/biboumi-git/PKGBUILD
-+++ b/src/biboumi-git/PKGBUILD
-@@ -2,7 +2,7 @@
- 
- _pkgname=biboumi
- pkgname="$_pkgname-git"
--pkgver=r1183.f3b1e39
-+pkgver=r1087.5ba66c3
- pkgrel=1
- pkgdesc="XMPP gateway to IRC"
- arch=('i686' 'x86_64' 'armv7h' 'aarch64')
-diff --git a/src/emulationstation-git/PKGBUILD b/src/emulationstation-git/PKGBUILD
-index 6bbf108..afbce44 100644
---- a/src/emulationstation-git/PKGBUILD
-+++ b/src/emulationstation-git/PKGBUILD
-@@ -5,7 +5,7 @@
- pkgname=emulationstation-git
- _gitname=EmulationStation
- pkgrel=1
--pkgver=1126.ca046f7
-+pkgver=1034.99c1ddb
- pkgdesc="A graphical front-end for emulators with controller navigation. Developed for the Raspbery Pi, but runs on most Linux systems."
- arch=('i686' 'x86_64' 'armv6h' 'armv7h')
- url="https://github.com/RetroPie/EmulationStation"
-diff --git a/src/libretro-prosystem-git/PKGBUILD b/src/libretro-prosystem-git/PKGBUILD
-index abceee0..73d14ae 100644
---- a/src/libretro-prosystem-git/PKGBUILD
-+++ b/src/libretro-prosystem-git/PKGBUILD
-@@ -1,7 +1,7 @@
- # Maintainer: Oliver Jaksch <arch-aur@com-in.de>
- 
- pkgname=libretro-prosystem-git
--pkgver=150.bdc2a82
-+pkgver=148.b41e9ba
- pkgrel=1
- pkgdesc="libretro implementation of ProSystem. (Atari 7800)"
- arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')
-diff --git a/src/libretro-snes9x2010-git/PKGBUILD b/src/libretro-snes9x2010-git/PKGBUILD
-index dc4b9c6..1a55a85 100644
---- a/src/libretro-snes9x2010-git/PKGBUILD
-+++ b/src/libretro-snes9x2010-git/PKGBUILD
-@@ -3,7 +3,7 @@
- # Contributor: almostalive   <almostalive2003 at gmail dot com>
- 
- pkgname=libretro-snes9x2010-git
--pkgver=882.cdc2a1f
-+pkgver=878.887d41d
- pkgrel=1
- pkgdesc="libretro implementation of Snes9x Next. (Super Nintendo Entertainment System)"
- arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')
-diff --git a/src/libretro-vba-next-git/PKGBUILD b/src/libretro-vba-next-git/PKGBUILD
-index bca3b64..83fefef 100644
---- a/src/libretro-vba-next-git/PKGBUILD
-+++ b/src/libretro-vba-next-git/PKGBUILD
-@@ -3,7 +3,7 @@
- # Contributor: almostalive   <almostalive2003 at gmail dot com>
- 
- pkgname=libretro-vba-next-git
--pkgver=710.87989b4
-+pkgver=681.e773475
- pkgrel=1
- pkgdesc="libretro implementation of VBA Next. (Game Boy Advance)"
- groups=('libretro')
-diff --git a/src/libretro-virtualjaguar-git/PKGBUILD b/src/libretro-virtualjaguar-git/PKGBUILD
-index 2cc6dd2..0c7c89d 100644
---- a/src/libretro-virtualjaguar-git/PKGBUILD
-+++ b/src/libretro-virtualjaguar-git/PKGBUILD
-@@ -1,7 +1,7 @@
- # Maintainer: Oliver Jaksch <arch-aur@com-in.de>
- 
- pkgname=libretro-virtualjaguar-git
--pkgver=211.d5ddbe0
-+pkgver=209.f073823
- pkgrel=1
- pkgdesc="libretro implementation of Virtual Jaguar. (Atari Jaguar)"
- arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')
-diff --git a/src/openconnect-git/PKGBUILD b/src/openconnect-git/PKGBUILD
-index 8a629c1..934043e 100644
---- a/src/openconnect-git/PKGBUILD
-+++ b/src/openconnect-git/PKGBUILD
-@@ -2,13 +2,14 @@
- 
- pkgname=openconnect-git
- _pkgname=openconnect
--pkgver=7.08.r46.g91c8188
--pkgrel=1
-+pkgver=7.06.r93.g11ad105
-+pkgrel=2
- pkgdesc="Open client for Cisco AnyConnect VPN"
- arch=('i686' 'x86_64')
--license=('LGPL2.1')
-+license=('GPL')
- url="http://www.infradead.org/openconnect.html"
--depends=('libxml2' 'gnutls' 'libproxy' 'vpnc' 'krb5' 'lz4' 'pcsclite')
-+depends=('libxml2' 'gnutls' 'libproxy' 'vpnc' 'krb5' 'lz4' 'pcsclite' 'trousers' 'stoken'
-+		'oath-toolkit')
- makedepends=('intltool' 'python2' 'git')
- options=('!emptydirs')
- provides=($_pkgname)
-@@ -27,7 +28,7 @@ build() {
-   PYTHON=/usr/bin/python2 ./configure --prefix=/usr \
-       --sbindir=/usr/bin \
-       --disable-static
--  make
-+  make V=0
- }
- 
- package() {
-diff --git a/src/python-pycares/PKGBUILD b/src/python-pycares/PKGBUILD
-index ea97d8d..da1a9fd 100644
---- a/src/python-pycares/PKGBUILD
-+++ b/src/python-pycares/PKGBUILD
-@@ -7,7 +7,6 @@ arch=('i686' 'x86_64')
- url="https://github.com/saghul/pycares"
- license=('MIT')
- depends=('python')
--makedepends=('python-setuptools')
- 
- source=("https://github.com/saghul/$_pkgname/archive/$_pkgname-${pkgver}.tar.gz")
- sha512sums=('d9a910b529d3b070b1685f6d89458404f22a5aa7002b01c1772f3eff548e9764826454c41bb69bf2f5b663df39cd1fb71b599b5f1ea88e197218e02942af67c7')
-diff --git a/src/rusty-keys-git/PKGBUILD b/src/rusty-keys-git/PKGBUILD
-index e95236c..ab9fa53 100644
---- a/src/rusty-keys-git/PKGBUILD
-+++ b/src/rusty-keys-git/PKGBUILD
-@@ -1,7 +1,7 @@
- # Maintainer: moparisthebest <admin dot archlinux AT moparisthebest dot com>
- 
- pkgname=rusty-keys-git
--pkgver=0.0.2.r14.gd0fdea6
-+pkgver=0.0.2.r11.g99cf9c4
- pkgrel=1
- pkgdesc="uinput level keyboard mapper for linux"
- url="https://code.moparisthebest.com/moparisthebest/rusty-keys"
-diff --git a/src/stubby-git/PKGBUILD b/src/stubby-git/PKGBUILD
-index aeeb5d4..8920bd1 100644
---- a/src/stubby-git/PKGBUILD
-+++ b/src/stubby-git/PKGBUILD
-@@ -8,8 +8,9 @@ pkgdesc="DNS Privacy Daemon"
- arch=('x86_64' 'i686')
- url="https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Daemon+-+Stubby"
- license=('BSD')
--depends=('openssl' 'libyaml')
--makedepends=('git')
-+
-+makedepends=('libtool' 'git')
-+depends=('libyaml' 'openssl')
- 
- source=("$_pkgbase::git+https://github.com/getdnsapi/getdns.git")
- sha256sums=('SKIP')
-@@ -43,7 +44,4 @@ package() {
- 
-   install -D -m644 stubby/systemd/stubby.service "${pkgdir}/usr/lib/systemd/system/stubby.service"
-   install -D -m644 stubby/systemd/stubby.conf "${pkgdir}/usr/lib/tmpfiles.d/stubby.conf"
--
--  mkdir -p "${pkgdir}/etc/stubby"
--  ln -s /usr/etc/stubby/stubby.yml "${pkgdir}/etc/stubby/stubby.yml"
- }
-diff --git a/src/zpaq/PKGBUILD b/src/zpaq/PKGBUILD
-index 875e4a6..d928d48 100644
---- a/src/zpaq/PKGBUILD
-+++ b/src/zpaq/PKGBUILD
-@@ -32,10 +32,10 @@ build()
- 	fi
- 
- 	msg 'Building libzpaq'
--	$CXX $CXXFLAGS $LDFLAGS -fPIC -O3 -shared -Dunix -DNDEBUG libzpaq.cpp -o libzpaq.so
-+	$CXX $CXXFLAGS $LDFLAGS -fPIC -shared -Dunix -DNDEBUG libzpaq.cpp -o libzpaq.so
- 
- 	msg 'Building zpaq'
--	$CXX ${CXXFLAGS/-flto} ${LDFLAGS/-flto} -O3 -pthread -Dunix -DNDEBUG zpaq.cpp -L. -lzpaq -o zpaq
-+	$CXX ${CXXFLAGS/-flto} ${LDFLAGS/-flto} -pthread -Dunix -DNDEBUG zpaq.cpp -L. -lzpaq -o zpaq
- 
- 	msg 'Building man page'
- 	pod2man zpaq.pod zpaq.1
 diff --git a/src/atheme/PKGBUILD b/src/atheme/PKGBUILD
 index 99b97a9..a07ab84 100644
 --- a/src/atheme/PKGBUILD
@@ -202,175 +26,162 @@ index 99b97a9..a07ab84 100644
  
  pkgname=atheme
  pkgver=7.2.9
-diff --git a/src/axtls/.config b/src/axtls/.config
-index 7b11ae9..3581310 100644
---- a/src/axtls/.config
-+++ b/src/axtls/.config
-@@ -9,7 +9,7 @@ CONFIG_PLATFORM_LINUX=y
- #
- # General Configuration
- #
--PREFIX="/usr/local"
-+PREFIX="/usr"
- # CONFIG_DEBUG is not set
- CONFIG_STRIP_UNWANTED_SECTIONS=y
- # CONFIG_VISUAL_STUDIO_7_0 is not set
-@@ -26,8 +26,8 @@ CONFIG_EXTRA_LDFLAGS_OPTIONS=""
- #
- # CONFIG_SSL_SERVER_ONLY is not set
- # CONFIG_SSL_CERT_VERIFICATION is not set
--# CONFIG_SSL_ENABLE_CLIENT is not set
--CONFIG_SSL_FULL_MODE=y
-+CONFIG_SSL_ENABLE_CLIENT=y
-+# CONFIG_SSL_FULL_MODE is not set
- # CONFIG_SSL_SKELETON_MODE is not set
- # CONFIG_SSL_PROT_LOW is not set
- CONFIG_SSL_PROT_MEDIUM=y
-@@ -40,15 +40,17 @@ CONFIG_SSL_X509_CERT_LOCATION=""
- CONFIG_SSL_X509_COMMON_NAME=""
- CONFIG_SSL_X509_ORGANIZATION_NAME=""
- CONFIG_SSL_X509_ORGANIZATION_UNIT_NAME=""
--CONFIG_SSL_HAS_PEM=y
--CONFIG_SSL_USE_PKCS12=y
-+CONFIG_SSL_ENABLE_V23_HANDSHAKE=y
-+# CONFIG_SSL_HAS_PEM is not set
-+# CONFIG_SSL_USE_PKCS12 is not set
- CONFIG_SSL_EXPIRY_TIME=24
- CONFIG_X509_MAX_CA_CERTS=150
- CONFIG_SSL_MAX_CERTS=3
- # CONFIG_SSL_CTX_MUTEXING is not set
- CONFIG_USE_DEV_URANDOM=y
- # CONFIG_WIN32_USE_CRYPTO_LIB is not set
--# CONFIG_OPENSSL_COMPATIBLE is not set
-+CONFIG_OPENSSL_COMPATIBLE=y
-+CONFIG_SSL_SNI=y
- # CONFIG_PERFORMANCE_TESTING is not set
- # CONFIG_SSL_TEST is not set
- # CONFIG_AXTLSWRAP is not set
-@@ -91,8 +93,8 @@ CONFIG_LUA_CORE=""
- #
- # Samples
- #
--# CONFIG_SAMPLES is not set
--# CONFIG_C_SAMPLES is not set
-+CONFIG_SAMPLES=y
-+CONFIG_C_SAMPLES=y
- # CONFIG_CSHARP_SAMPLES is not set
- # CONFIG_VBNET_SAMPLES is not set
- # CONFIG_JAVA_SAMPLES is not set
-diff --git a/src/axtls/PKGBUILD b/src/axtls/PKGBUILD
-index 5b9b662..6ef0780 100644
---- a/src/axtls/PKGBUILD
-+++ b/src/axtls/PKGBUILD
-@@ -1,6 +1,6 @@
- # Maintainer: Versus Void
- pkgname=axtls
--pkgver=2.1.4
-+pkgver=1.5.4
- pkgrel=1
- pkgdesc="Highly configurable client/server TLSv1.2 library"
- arch=(x86_64 i686)
-@@ -9,17 +9,20 @@ license=('BSD')
- groups=()
- makedepends=()
- source=("http://downloads.sourceforge.net/sourceforge/${pkgname}/axTLS-${pkgver}.tar.gz"
-+        "axtls-sni.patch"
-         "config.h"
-         ".config"
- 	   )
- #noextract=()
--sha256sums=("e53dd20e2b619349bc48b631176a38742ea600333fd0349df83c6366b7be05bb"
--			"b9f276b4b04daa3e36cb3fa71771796327904fa2c5e55d205d3148cae8bf17d5"
--			"ae1d08b8b3bcc4ab9dccb62902f2c5e35d435eba3f9fe81da523fe3a2bc87b53"
-+sha256sums=("24d50cc4f5908d06cfacb2a3916d91ed75c5b1441809e47bc45e1053d6ba5d91"
-+			"28906cc3e4684f61791371d6de635618652bbc56e1b445ffcd397ffcc513ca8f"
-+			"8e32ee043b3e704e58e938eb1b28a495f3d0d2fbb241dfa2b0654e2c2f40ddb2"
-+			"17fcc8fe52357724a59c4bb2973274697bde3573160ac007306e788e3859e88f"
- 		   )
+diff --git a/src/biboumi-git/PKGBUILD b/src/biboumi-git/PKGBUILD
+index c7319ea..6155664 100644
+--- a/src/biboumi-git/PKGBUILD
++++ b/src/biboumi-git/PKGBUILD
+@@ -2,7 +2,7 @@
  
- prepare() {
- 	cd "axtls-code"
-+	patch -p1 -i "$srcdir/axtls-sni.patch"
- 	cp "$srcdir/config.h" config/
- 	cp "$srcdir/.config" config/
- 	sed -i '/rm $(PREFIX)\/include\/axTLS\/os_port.h/d' Makefile
-diff --git a/src/axtls/config.h b/src/axtls/config.h
-index bcbea10..f8e3f02 100644
---- a/src/axtls/config.h
-+++ b/src/axtls/config.h
-@@ -10,7 +10,7 @@
- /*
-  * General Configuration
-  */
--#define PREFIX "/usr/local"
-+#define PREFIX "/usr"
- #undef CONFIG_DEBUG
- #define CONFIG_STRIP_UNWANTED_SECTIONS 1
- #undef CONFIG_VISUAL_STUDIO_7_0
-@@ -27,8 +27,8 @@
-  */
- #undef CONFIG_SSL_SERVER_ONLY
- #undef CONFIG_SSL_CERT_VERIFICATION
--#undef CONFIG_SSL_ENABLE_CLIENT
--#define CONFIG_SSL_FULL_MODE 1
-+#define CONFIG_SSL_ENABLE_CLIENT 1
-+#undef CONFIG_SSL_FULL_MODE
- #undef CONFIG_SSL_SKELETON_MODE
- #undef CONFIG_SSL_PROT_LOW
- #define CONFIG_SSL_PROT_MEDIUM 1
-@@ -41,15 +41,17 @@
- #define CONFIG_SSL_X509_COMMON_NAME ""
- #define CONFIG_SSL_X509_ORGANIZATION_NAME ""
- #define CONFIG_SSL_X509_ORGANIZATION_UNIT_NAME ""
--#define CONFIG_SSL_HAS_PEM 1
--#define CONFIG_SSL_USE_PKCS12 1
-+#define CONFIG_SSL_ENABLE_V23_HANDSHAKE 1
-+#undef CONFIG_SSL_HAS_PEM
-+#undef CONFIG_SSL_USE_PKCS12
- #define CONFIG_SSL_EXPIRY_TIME 24
- #define CONFIG_X509_MAX_CA_CERTS 150
- #define CONFIG_SSL_MAX_CERTS 3
- #undef CONFIG_SSL_CTX_MUTEXING
- #define CONFIG_USE_DEV_URANDOM 1
- #undef CONFIG_WIN32_USE_CRYPTO_LIB
--#undef CONFIG_OPENSSL_COMPATIBLE
-+#define CONFIG_OPENSSL_COMPATIBLE 1
-+#define CONFIG_SSL_SNI 1
- #undef CONFIG_PERFORMANCE_TESTING
- #undef CONFIG_SSL_TEST
- #undef CONFIG_AXTLSWRAP
-@@ -92,8 +94,8 @@
- /*
-  * Samples
-  */
--#undef CONFIG_SAMPLES
--#undef CONFIG_C_SAMPLES
-+#define CONFIG_SAMPLES 1
-+#define CONFIG_C_SAMPLES 1
- #undef CONFIG_CSHARP_SAMPLES
- #undef CONFIG_VBNET_SAMPLES
- #undef CONFIG_JAVA_SAMPLES
+ _pkgname=biboumi
+ pkgname="$_pkgname-git"
+-pkgver=8.2.r18.g21a79b7
++pkgver=8.2.r11.g5ff3696
+ pkgrel=1
+ pkgdesc="XMPP gateway to IRC"
+ arch=('i686' 'x86_64' 'armv7h' 'aarch64')
 diff --git a/src/dino-git/PKGBUILD b/src/dino-git/PKGBUILD
-index 80a2383..6d9d6bb 100644
+index a7d191a..231a9cf 100644
 --- a/src/dino-git/PKGBUILD
 +++ b/src/dino-git/PKGBUILD
-@@ -2,7 +2,7 @@
- # Contributor: svalo <me@valo.space>
- 
- pkgname=dino-git
--pkgver=r225.2e041e2
-+pkgver=r222.b482c57
- pkgrel=1
- pkgdesc="Simple and modern Jabber/XMPP client written in vala"
- arch=('i686' 'x86_64' 'aarch64')
-@@ -26,7 +26,6 @@ pkgver() {
+@@ -33,7 +33,6 @@ pkgver() {
  build() {
      cd "${srcdir}/${pkgname%-git}"
-     ./configure $_DISABLE_PLUGINS --prefix="/usr" --with-tests CC="$CC" CFLAGS="$CFLAGS" VALACFLAGS="$VALACFLAGS"
+     ./configure $_DISABLE_PLUGINS $_ENABLE_PLUGINS --prefix="/usr" --with-tests CC="$CC" CFLAGS="$CFLAGS" VALACFLAGS="$VALACFLAGS"
 -    sed -i '/SrvRecordsTls/d' libdino/src/service/module_manager.vala
      make
  }
  
+diff --git a/src/emulationstation-git/PKGBUILD b/src/emulationstation-git/PKGBUILD
+index c7d1386..afbce44 100644
+--- a/src/emulationstation-git/PKGBUILD
++++ b/src/emulationstation-git/PKGBUILD
+@@ -5,7 +5,7 @@
+ pkgname=emulationstation-git
+ _gitname=EmulationStation
+ pkgrel=1
+-pkgver=1299.880064c
++pkgver=1034.99c1ddb
+ pkgdesc="A graphical front-end for emulators with controller navigation. Developed for the Raspbery Pi, but runs on most Linux systems."
+ arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+ url="https://github.com/RetroPie/EmulationStation"
+diff --git a/src/evdi-git/PKGBUILD b/src/evdi-git/PKGBUILD
+index 5447e88..b8faa15 100644
+--- a/src/evdi-git/PKGBUILD
++++ b/src/evdi-git/PKGBUILD
+@@ -1,43 +1,56 @@
+-# Maintainer: ajs124
++# Maintainer: Chris Severance aur.severach aATt spamgourmet dott com
++# Contributor: ajs124
+ 
+-pkgname=evdi-git
+-pkgver=1.5.0.r2.r6.ge08998f
++set -u
++pkgname='evdi-git'
++pkgver=1.5.0_r2.r0.gdc3c9d6
++_pkgver="${pkgver%%.r*}"
+ pkgrel=1
+-pkgdesc="A Linux® kernel module that enables management of multiple screens. Git version."
++pkgdesc="A Linux® kernel module that enables management of multiple screens."
++pkgdesc+=' Git version.'
+ arch=('i686' 'x86_64')
+-url="https://github.com/DisplayLink/evdi"
++url='https://github.com/DisplayLink/evdi'
+ license=('GPL')
+-depends=(dkms)
+-makedepends=(git libdrm)
+-install=$pkgname.install
+-changelog=$pkgname.Changelog
+-source=(git+https://github.com/DisplayLink/evdi/)
+-md5sums=(SKIP)
+-conflicts=(evdi)
+-provides=(evdi=$pkgver)
++depends=('dkms')
++makedepends=('git' 'libdrm')
++provides=("evdi=${_pkgver}")
++conflicts=('evdi')
++install=${pkgname}.install
++changelog="${pkgname}.Changelog"
++_srcdir="${pkgname%-git}"
++source=("git+https://github.com/DisplayLink/evdi/")
++sha256sums=('SKIP')
+ 
+ pkgver() {
+-	cd ${pkgname/-git/}
+-	git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
++  set -u
++  cd "${_srcdir}"
++  # extra -r interfers with version management
++  local _t1="$(git describe --tags)" # v1.5.0-r2
++  local _t1a="${_t1//-/_}"
++  local _t2="$(git describe --long --tags)" # v1.5.0-r2-0-gdc3c9d6
++  local _t2a="${_t2//${_t1}/${_t1a}}"
++  sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g' <<< "${_t2a}"
++  set +u
+ }
+ 
+ build() {
+-	# We only need to build the library in this step, dmks will build the module
+-	cd ${pkgname/-git/}/library
+-	# hotfix mentioned at https://github.com/DisplayLink/evdi/issues/117
+-	sed -i -e 's/#if KERNEL_VERSION(4, 16, 0) <= LINUX_VERSION_CODE/#if KERNEL_VERSION(4, 15, 0) <= LINUX_VERSION_CODE/' ../module/evdi_connector.c
+-	make
++  set -u
++  # We only need to build the library in this step, dmks will build the module
++  #cd "${_srcdir}/library"
++  # DKMS builds are hard to debug. We build it here and throw it away.
++  cd "${_srcdir}"
++  make
++  set +u
+ }
+ 
+ package() {
+-	# Predfine some target folders
+-	SRCDIR="$pkgdir/usr/src/${pkgname/-git/}-$pkgver"	# This one is needed for dkms
+-	LIBNAME=lib${pkgname/-git/}
++  set -u
++  cd "${_srcdir}"
++  install -Dpm755 "library/lib${pkgname%-git}.so" -t "${pkgdir}/usr/lib/"
+ 
+-	cd ${pkgname/-git/}
+-
+-	install -D -m 755 library/$LIBNAME.so $pkgdir/usr/lib/$LIBNAME.so
+-
+-	install -d $SRCDIR
+-	install -D -m 755 module/* $SRCDIR
+-}
+\ No newline at end of file
++  local _DKMS="${pkgdir}/usr/src/${pkgname%-git}-${_pkgver}"
++  install -Dpm644 module/* -t "${_DKMS}/"
++  make -j1 -C "${_DKMS}" clean
++  set +u
++}
++set +u
+diff --git a/src/filebot/PKGBUILD b/src/filebot/PKGBUILD
+index 25d5210..a90b85c 100644
+--- a/src/filebot/PKGBUILD
++++ b/src/filebot/PKGBUILD
+@@ -16,7 +16,7 @@ url="https://github.com/filebot/filebot"
+ license=('GPL')
+ install=$pkgname.install
+ depends=('java-runtime>=9' 'fontconfig' 'chromaprint')
+-makedepends=('unzip' 'apache-ivy' 'jdk>=9' 'git')
++makedepends=('unzip' 'apache-ivy' 'jdk>=9')
+ 
+ [[ $CARCH == "i686" ]]   && _intarch=x86
+ [[ $CARCH == "x86_64" ]] && _intarch=x86-64
+diff --git a/src/hg-git-hg/PKGBUILD b/src/hg-git-hg/PKGBUILD
+index 9dd2316..48b1bd2 100644
+--- a/src/hg-git-hg/PKGBUILD
++++ b/src/hg-git-hg/PKGBUILD
+@@ -7,7 +7,7 @@
+ #
+ name=hg-git
+ pkgname=$name-hg
+-pkgver=1133.bbad9283f80f
++pkgver=631.711baa274f78
+ pkgrel=1
+ pkgdesc="the Hg-Git mercurial plugin"
+ arch=(any)
 diff --git a/src/inspircd/PKGBUILD b/src/inspircd/PKGBUILD
 index bdd29e8..875e10d 100644
 --- a/src/inspircd/PKGBUILD
@@ -449,7 +260,7 @@ index bdd29e8..875e10d 100644
  
    make
 diff --git a/src/intellij-idea-ultimate-edition/PKGBUILD b/src/intellij-idea-ultimate-edition/PKGBUILD
-index 993d524..1e4c85b 100644
+index c7cbc79..cfa993b 100644
 --- a/src/intellij-idea-ultimate-edition/PKGBUILD
 +++ b/src/intellij-idea-ultimate-edition/PKGBUILD
 @@ -1,7 +1,7 @@
@@ -458,8 +269,8 @@ index 993d524..1e4c85b 100644
  pkgbase=intellij-idea-ultimate-edition
 -pkgname=intellij-idea-ultimate-edition
 +pkgname=(intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre)
- pkgver=2018.1.4
- _buildver=181.5087.20
+ pkgver=2018.1.5
+ _buildver=181.5281.24
  pkgrel=1
 @@ -20,7 +20,7 @@ prepare() {
    mv idea-IU-$_buildver/jre64 "$srcdir"/jre64
@@ -481,6 +292,82 @@ index 993d524..1e4c85b 100644
 +}
 +
  # vim:set ts=2 sw=2 et:
+diff --git a/src/jdk-devel/jdk-devel.install b/src/jdk-devel/jdk-devel.install
+index 6b327f5..1e90a7b 100644
+--- a/src/jdk-devel/jdk-devel.install
++++ b/src/jdk-devel/jdk-devel.install
+@@ -1,4 +1,4 @@
+-VERSION='11'
++VERSION='<version>'
+ THIS_JAVA='java-${VERSION}-jdk'
+ NAME='JDK Devel'
+ 
+diff --git a/src/jdk/jdk.install b/src/jdk/jdk.install
+index 701d44a..8c38f1a 100644
+--- a/src/jdk/jdk.install
++++ b/src/jdk/jdk.install
+@@ -1,4 +1,4 @@
+-VERSION='10'
++VERSION='<version>'
+ THIS_JAVA='java-${VERSION}-jdk'
+ NAME='JDK'
+ 
+diff --git a/src/jitsi/PKGBUILD b/src/jitsi/PKGBUILD
+index 329ed52..6c6bd1b 100644
+--- a/src/jitsi/PKGBUILD
++++ b/src/jitsi/PKGBUILD
+@@ -8,8 +8,8 @@ pkgdesc="An audio/video SIP VoIP phone and instant messenger written in Java (fo
+ arch=('i686' 'x86_64')
+ url="http://jitsi.org"
+ license=('apache')
+-depends=('java-runtime=8')
+-makedepends=('apache-ant' 'java-environment-common' 'java-environment=8')
++depends=('java-runtime')
++makedepends=('apache-ant' 'java-environment-common')
+ options=(!strip !emptydirs zipman !libtool docs)
+ source=("https://download.jitsi.org/jitsi/src/jitsi-src-${pkgver}.zip"
+ 		jitsi.desktop
+diff --git a/src/movim-git/PKGBUILD b/src/movim-git/PKGBUILD
+index cd8dd34..33123d5 100644
+--- a/src/movim-git/PKGBUILD
++++ b/src/movim-git/PKGBUILD
+@@ -3,7 +3,7 @@
+ 
+ _pkgbase='movim'
+ pkgname=movim-git
+-pkgver=r6859.eeb15ce8
++pkgver=r6815.8fba1ad6
+ pkgrel=1
+ pkgdesc="Movim is a decentralized social network, written in PHP and HTML5 and based on the XMPP standard protocol."
+ arch=('any')
+diff --git a/src/openconnect-git/PKGBUILD b/src/openconnect-git/PKGBUILD
+index 9a73773..934043e 100644
+--- a/src/openconnect-git/PKGBUILD
++++ b/src/openconnect-git/PKGBUILD
+@@ -2,8 +2,8 @@
+ 
+ pkgname=openconnect-git
+ _pkgname=openconnect
+-pkgver=7.08.r91.gf0f990c
+-pkgrel=1
++pkgver=7.06.r93.g11ad105
++pkgrel=2
+ pkgdesc="Open client for Cisco AnyConnect VPN"
+ arch=('i686' 'x86_64')
+ license=('GPL')
+diff --git a/src/prosody-hg-stable/PKGBUILD b/src/prosody-hg-stable/PKGBUILD
+index ea8313a..6df4c49 100644
+--- a/src/prosody-hg-stable/PKGBUILD
++++ b/src/prosody-hg-stable/PKGBUILD
+@@ -8,7 +8,7 @@
+ 
+ pkgname=prosody-hg-stable
+ pkgrel=1
+-pkgver=0.10.r7564+.9e565d0b1771+
++pkgver=0.10.r7499+.3d21c63ec03f+
+ pkgver() {
+   cd "$srcdir/prosody-hg"
+   printf "0.10.r%s.%s" "$(hg identify -n)" "$(hg identify -i)"
 diff --git a/src/python-pycares/PKGBUILD b/src/python-pycares/PKGBUILD
 index ea97d8d..da1a9fd 100644
 --- a/src/python-pycares/PKGBUILD
@@ -561,199 +448,3 @@ index 875e4a6..d928d48 100644
  
  	msg 'Building man page'
  	pod2man zpaq.pod zpaq.1
-diff --git a/undo.diff b/undo.diff
-index 66ae66f..3a7c396 100644
---- a/undo.diff
-+++ b/undo.diff
-@@ -1,191 +0,0 @@
--diff --git a/src/ampache-git/PKGBUILD b/src/ampache-git/PKGBUILD
--index 210d6d9..90e9ba1 100644
----- a/src/ampache-git/PKGBUILD
--+++ b/src/ampache-git/PKGBUILD
--@@ -3,8 +3,8 @@
-- 
-- pkgname=ampache-git
-- _gitname=ampache
---pkgver=3.8.2.291.g10b5a63f
---pkgrel=1
--+pkgver=3.8.1.7.g799165a
--+pkgrel=2
-- pkgdesc="A PHP-based tool for managing and playing your audio/video files via a web interface"
-- arch=('i686' 'x86_64')
-- url="http://www.ampache.org/"
--diff --git a/src/biboumi-git/PKGBUILD b/src/biboumi-git/PKGBUILD
--index 37a1813..7015177 100644
----- a/src/biboumi-git/PKGBUILD
--+++ b/src/biboumi-git/PKGBUILD
--@@ -2,7 +2,7 @@
-- 
-- _pkgname=biboumi
-- pkgname="$_pkgname-git"
---pkgver=r1183.f3b1e39
--+pkgver=r1087.5ba66c3
-- pkgrel=1
-- pkgdesc="XMPP gateway to IRC"
-- arch=('i686' 'x86_64' 'armv7h' 'aarch64')
--diff --git a/src/emulationstation-git/PKGBUILD b/src/emulationstation-git/PKGBUILD
--index 6bbf108..afbce44 100644
----- a/src/emulationstation-git/PKGBUILD
--+++ b/src/emulationstation-git/PKGBUILD
--@@ -5,7 +5,7 @@
-- pkgname=emulationstation-git
-- _gitname=EmulationStation
-- pkgrel=1
---pkgver=1126.ca046f7
--+pkgver=1034.99c1ddb
-- pkgdesc="A graphical front-end for emulators with controller navigation. Developed for the Raspbery Pi, but runs on most Linux systems."
-- arch=('i686' 'x86_64' 'armv6h' 'armv7h')
-- url="https://github.com/RetroPie/EmulationStation"
--diff --git a/src/libretro-prosystem-git/PKGBUILD b/src/libretro-prosystem-git/PKGBUILD
--index abceee0..73d14ae 100644
----- a/src/libretro-prosystem-git/PKGBUILD
--+++ b/src/libretro-prosystem-git/PKGBUILD
--@@ -1,7 +1,7 @@
-- # Maintainer: Oliver Jaksch <arch-aur@com-in.de>
-- 
-- pkgname=libretro-prosystem-git
---pkgver=150.bdc2a82
--+pkgver=148.b41e9ba
-- pkgrel=1
-- pkgdesc="libretro implementation of ProSystem. (Atari 7800)"
-- arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')
--diff --git a/src/libretro-snes9x2010-git/PKGBUILD b/src/libretro-snes9x2010-git/PKGBUILD
--index dc4b9c6..1a55a85 100644
----- a/src/libretro-snes9x2010-git/PKGBUILD
--+++ b/src/libretro-snes9x2010-git/PKGBUILD
--@@ -3,7 +3,7 @@
-- # Contributor: almostalive   <almostalive2003 at gmail dot com>
-- 
-- pkgname=libretro-snes9x2010-git
---pkgver=882.cdc2a1f
--+pkgver=878.887d41d
-- pkgrel=1
-- pkgdesc="libretro implementation of Snes9x Next. (Super Nintendo Entertainment System)"
-- arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')
--diff --git a/src/libretro-vba-next-git/PKGBUILD b/src/libretro-vba-next-git/PKGBUILD
--index bca3b64..83fefef 100644
----- a/src/libretro-vba-next-git/PKGBUILD
--+++ b/src/libretro-vba-next-git/PKGBUILD
--@@ -3,7 +3,7 @@
-- # Contributor: almostalive   <almostalive2003 at gmail dot com>
-- 
-- pkgname=libretro-vba-next-git
---pkgver=710.87989b4
--+pkgver=681.e773475
-- pkgrel=1
-- pkgdesc="libretro implementation of VBA Next. (Game Boy Advance)"
-- groups=('libretro')
--diff --git a/src/libretro-virtualjaguar-git/PKGBUILD b/src/libretro-virtualjaguar-git/PKGBUILD
--index 2cc6dd2..0c7c89d 100644
----- a/src/libretro-virtualjaguar-git/PKGBUILD
--+++ b/src/libretro-virtualjaguar-git/PKGBUILD
--@@ -1,7 +1,7 @@
-- # Maintainer: Oliver Jaksch <arch-aur@com-in.de>
-- 
-- pkgname=libretro-virtualjaguar-git
---pkgver=211.d5ddbe0
--+pkgver=209.f073823
-- pkgrel=1
-- pkgdesc="libretro implementation of Virtual Jaguar. (Atari Jaguar)"
-- arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')
--diff --git a/src/openconnect-git/PKGBUILD b/src/openconnect-git/PKGBUILD
--index 8a629c1..934043e 100644
----- a/src/openconnect-git/PKGBUILD
--+++ b/src/openconnect-git/PKGBUILD
--@@ -2,13 +2,14 @@
-- 
-- pkgname=openconnect-git
-- _pkgname=openconnect
---pkgver=7.08.r46.g91c8188
---pkgrel=1
--+pkgver=7.06.r93.g11ad105
--+pkgrel=2
-- pkgdesc="Open client for Cisco AnyConnect VPN"
-- arch=('i686' 'x86_64')
---license=('LGPL2.1')
--+license=('GPL')
-- url="http://www.infradead.org/openconnect.html"
---depends=('libxml2' 'gnutls' 'libproxy' 'vpnc' 'krb5' 'lz4' 'pcsclite')
--+depends=('libxml2' 'gnutls' 'libproxy' 'vpnc' 'krb5' 'lz4' 'pcsclite' 'trousers' 'stoken'
--+		'oath-toolkit')
-- makedepends=('intltool' 'python2' 'git')
-- options=('!emptydirs')
-- provides=($_pkgname)
--@@ -27,7 +28,7 @@ build() {
--   PYTHON=/usr/bin/python2 ./configure --prefix=/usr \
--       --sbindir=/usr/bin \
--       --disable-static
---  make
--+  make V=0
-- }
-- 
-- package() {
--diff --git a/src/python-pycares/PKGBUILD b/src/python-pycares/PKGBUILD
--index ea97d8d..da1a9fd 100644
----- a/src/python-pycares/PKGBUILD
--+++ b/src/python-pycares/PKGBUILD
--@@ -7,7 +7,6 @@ arch=('i686' 'x86_64')
-- url="https://github.com/saghul/pycares"
-- license=('MIT')
-- depends=('python')
---makedepends=('python-setuptools')
-- 
-- source=("https://github.com/saghul/$_pkgname/archive/$_pkgname-${pkgver}.tar.gz")
-- sha512sums=('d9a910b529d3b070b1685f6d89458404f22a5aa7002b01c1772f3eff548e9764826454c41bb69bf2f5b663df39cd1fb71b599b5f1ea88e197218e02942af67c7')
--diff --git a/src/rusty-keys-git/PKGBUILD b/src/rusty-keys-git/PKGBUILD
--index e95236c..ab9fa53 100644
----- a/src/rusty-keys-git/PKGBUILD
--+++ b/src/rusty-keys-git/PKGBUILD
--@@ -1,7 +1,7 @@
-- # Maintainer: moparisthebest <admin dot archlinux AT moparisthebest dot com>
-- 
-- pkgname=rusty-keys-git
---pkgver=0.0.2.r14.gd0fdea6
--+pkgver=0.0.2.r11.g99cf9c4
-- pkgrel=1
-- pkgdesc="uinput level keyboard mapper for linux"
-- url="https://code.moparisthebest.com/moparisthebest/rusty-keys"
--diff --git a/src/stubby-git/PKGBUILD b/src/stubby-git/PKGBUILD
--index aeeb5d4..8920bd1 100644
----- a/src/stubby-git/PKGBUILD
--+++ b/src/stubby-git/PKGBUILD
--@@ -8,8 +8,9 @@ pkgdesc="DNS Privacy Daemon"
-- arch=('x86_64' 'i686')
-- url="https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Daemon+-+Stubby"
-- license=('BSD')
---depends=('openssl' 'libyaml')
---makedepends=('git')
--+
--+makedepends=('libtool' 'git')
--+depends=('libyaml' 'openssl')
-- 
-- source=("$_pkgbase::git+https://github.com/getdnsapi/getdns.git")
-- sha256sums=('SKIP')
--@@ -43,7 +44,4 @@ package() {
-- 
--   install -D -m644 stubby/systemd/stubby.service "${pkgdir}/usr/lib/systemd/system/stubby.service"
--   install -D -m644 stubby/systemd/stubby.conf "${pkgdir}/usr/lib/tmpfiles.d/stubby.conf"
---
---  mkdir -p "${pkgdir}/etc/stubby"
---  ln -s /usr/etc/stubby/stubby.yml "${pkgdir}/etc/stubby/stubby.yml"
-- }
--diff --git a/src/zpaq/PKGBUILD b/src/zpaq/PKGBUILD
--index 875e4a6..d928d48 100644
----- a/src/zpaq/PKGBUILD
--+++ b/src/zpaq/PKGBUILD
--@@ -32,10 +32,10 @@ build()
-- 	fi
-- 
-- 	msg 'Building libzpaq'
---	$CXX $CXXFLAGS $LDFLAGS -fPIC -O3 -shared -Dunix -DNDEBUG libzpaq.cpp -o libzpaq.so
--+	$CXX $CXXFLAGS $LDFLAGS -fPIC -shared -Dunix -DNDEBUG libzpaq.cpp -o libzpaq.so
-- 
-- 	msg 'Building zpaq'
---	$CXX ${CXXFLAGS/-flto} ${LDFLAGS/-flto} -O3 -pthread -Dunix -DNDEBUG zpaq.cpp -L. -lzpaq -o zpaq
--+	$CXX ${CXXFLAGS/-flto} ${LDFLAGS/-flto} -pthread -Dunix -DNDEBUG zpaq.cpp -L. -lzpaq -o zpaq
-- 
-- 	msg 'Building man page'
-- 	pod2man zpaq.pod zpaq.1
