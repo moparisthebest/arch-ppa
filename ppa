@@ -160,6 +160,15 @@ reinstall() {
     paclist $repo_name | cut -d' ' -f1 | xargs sudo pacman -S --noconfirm
 }
 
+clean() {
+    # git clean -e 'aur/*' -dxn | grep -v .git
+    git clean -e '*.git*' -e 'aur/*' -dxf
+}
+
+undo() {
+    patch -p1 -R < undo.diff
+}
+
 if [ "$#" -gt 0 ]; then
     [ -d "$src_dir" ] || mkdir -p "$src_dir"
     [ -d "$pkg_dir" ] || mkdir -p "$pkg_dir"
