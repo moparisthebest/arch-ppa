@@ -123,6 +123,11 @@ rebuild_db() {
     sign_packages $repo_name.db $repo_name.files
 }
 
+echo_deps() {
+    cd "$src_dir"
+    aurchain "$@"
+}
+
 build_deps() {
     cd "$src_dir"
     if [ "$#" -gt 0 ]; then
