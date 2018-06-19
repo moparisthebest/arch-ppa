@@ -169,6 +169,10 @@ undo() {
     patch -p1 -R < undo.diff
 }
 
+grep_deps() {
+    grep "$1" src/*/PKGBUILD
+}
+
 if [ "$#" -gt 0 ]; then
     [ -d "$src_dir" ] || mkdir -p "$src_dir"
     [ -d "$pkg_dir" ] || mkdir -p "$pkg_dir"
