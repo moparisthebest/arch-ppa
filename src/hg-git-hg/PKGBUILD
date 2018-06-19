@@ -7,7 +7,7 @@
 #
 name=hg-git
 pkgname=$name-hg
-pkgver=631.711baa274f78
+pkgver=1133.bbad9283f80f
 pkgrel=1
 pkgdesc="the Hg-Git mercurial plugin"
 arch=(any)

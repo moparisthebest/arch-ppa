@@ -1,0 +1,1 @@
+ruby-net-http-persistent ruby-net-http-pipeline ruby-websocket ruby-ethon ruby-gh ruby-launchy ruby-pusher-client ruby-typhoeus-0.6 gcc6 ruby-travis movim-git mingw-w64-gcc luaunbound libgcj17-bin lib32-ncurses5-compat-libs jitsi jdk-devel gcc5 gajim-plugin-omemo factorio-demo evdi-git ethminer-git emulationstation-git emulationstation-autoscraper cndrvcups-lb clinfo-git
