@@ -8,8 +8,8 @@ pkgdesc="An audio/video SIP VoIP phone and instant messenger written in Java (fo
 arch=('i686' 'x86_64')
 url="http://jitsi.org"
 license=('apache')
-depends=('java-runtime')
-makedepends=('apache-ant' 'java-environment-common')
+depends=('java-runtime=8')
+makedepends=('apache-ant' 'java-environment-common' 'java-environment=8')
 options=(!strip !emptydirs zipman !libtool docs)
 source=("https://download.jitsi.org/jitsi/src/jitsi-src-${pkgver}.zip"
 		jitsi.desktop
