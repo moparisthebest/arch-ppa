@@ -2,7 +2,7 @@
 
 pkgname=openconnect-git
 _pkgname=openconnect
-pkgver=7.08.r91.gf0f990c
+pkgver=7.08.r92.g292eb3e
 pkgrel=1
 pkgdesc="Open client for Cisco AnyConnect VPN"
 arch=('i686' 'x86_64')
@@ -14,7 +14,7 @@ makedepends=('intltool' 'python2' 'git')
 options=('!emptydirs')
 provides=($_pkgname)
 conflicts=($_pkgname)
-source=("$pkgname::git+https://gitlab.com/ocserv/$_pkgname.git/")
+source=("$pkgname::git+https://gitlab.com/openconnect/$_pkgname.git/")
 md5sums=('SKIP')
 
 pkgver() {
