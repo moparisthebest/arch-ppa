@@ -1,8 +1,8 @@
 # Maintainer: xiretza <xiretza+aur@gmail.com>
 _pkgname=ternimal
 pkgname="${_pkgname}-git"
-pkgver=r5.2eea4f4
-pkgrel=2
+pkgver=r9.e7953b4
+pkgrel=1
 pkgdesc="Simulate a lifeform in the terminal"
 arch=('x86_64' 'i686' 'armv7h')
 url="https://github.com/p-e-w/ternimal"
