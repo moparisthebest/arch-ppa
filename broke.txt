@@ -1,2 +1,11 @@
 libgcj17-bin
 emulationstation-autoscraper
+
+pdftk-bin
+
+cloog mingw-w64-gcc-base mingw-w64-crt mingw-w64-winpthreads zpaq zelda-roth wireguard-module-arch truecraft-git rusty-keys-git rusty-keys pdftk-bin openconnect-git mingw-w64-gcc kodi-standalone-socket-activation filebot emulationstation-themes
+
+zelda-roth wireguard-module-arch truecraft-git rusty-keys-git rusty-keys openconnect-git filebot emulationstation-themes
+
+zelda-roth wireguard-module-arch truecraft-git rusty-keys-git rusty-keys filebot emulationstation-themes
+
