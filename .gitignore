@@ -10,3 +10,4 @@ broke
 .SRCINFO
 build_single_nofail.sh
 .git-nosub
+ppa.cfg

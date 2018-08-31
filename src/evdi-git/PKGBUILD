@@ -1,7 +1,7 @@
 # Maintainer: ajs124
 
 pkgname=evdi-git
-pkgver=1.5.0.r2.r6.ge08998f
+pkgver=1.5.0.r2.r7.g8eeb07a
 pkgrel=1
 pkgdesc="A Linux® kernel module that enables management of multiple screens. Git version."
 arch=('i686' 'x86_64')
