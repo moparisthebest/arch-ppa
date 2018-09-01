@@ -1,4 +1,4 @@
-VERSION='<version>'
+VERSION='10'
 THIS_JAVA='java-${VERSION}-jdk'
 NAME='JDK'
 
