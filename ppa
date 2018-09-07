@@ -105,7 +105,7 @@ build() {
         if [ "$failed" == "" ]
         then
             # success!, nuke the chroot
-            $ccm n
+            echo $ccm n
         else
             # some failures, just delete the packages
             $ccm d
