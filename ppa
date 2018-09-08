@@ -161,9 +161,16 @@ list_official_packages() {
     ls | xargs -n1 -I {} pacman -Ss '^{}$' | egrep -v "^($repo_name| )"
 }
 
+list_installed_paclist() {
+    paclist $repo_name | cut -d' ' -f1
+}
+
+list_installed() {
+    comm -12 <(pacman -Qq | sort) <(pacman -Slq $repo_name | sort)
+}
+
 reinstall() {
-    paclist $repo_name | cut -d' ' -f1 | xargs sudo pacman -S --noconfirm
-    comm -12 <(pacman -Qq | sort) <(pacman -Slq $repo_name | sort) | xargs sudo pacman -S --noconfirm
+    list_installed | xargs sudo pacman -S --noconfirm
 }
 
 clean() {
