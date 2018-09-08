@@ -173,6 +173,10 @@ reinstall() {
     list_installed | xargs sudo pacman -S --noconfirm
 }
 
+update_installed() {
+    update $(list_installed | xargs aurchain)
+}
+
 clean() {
     # git clean -e 'aur/*' -dxn | grep -v .git
     git clean -e '*.git*' -e 'aur/*' -dxf
