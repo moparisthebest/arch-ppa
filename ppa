@@ -156,8 +156,14 @@ echo_changed() {
     git diff-tree --no-commit-id --name-status -r "$commit" | grep -v ^D | grep PKGBUILD$ | sed -e 's@/PKGBUILD$@@' -e 's@.*/@@' | tr '\n' ' '
 }
 
+list_official_packages() {
+    cd "$src_dir"
+    ls | xargs -n1 -I {} pacman -Ss '^{}$' | egrep -v "^($repo_name| )"
+}
+
 reinstall() {
     paclist $repo_name | cut -d' ' -f1 | xargs sudo pacman -S --noconfirm
+    comm -12 <(pacman -Qq | sort) <(pacman -Slq $repo_name | sort) | xargs sudo pacman -S --noconfirm
 }
 
 clean() {
