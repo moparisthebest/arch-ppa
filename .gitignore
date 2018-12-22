@@ -11,3 +11,6 @@ broke
 build_single_nofail.sh
 .git-nosub
 ppa.cfg
+
+src/doom-wads/*.WAD
+

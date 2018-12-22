@@ -1,0 +1,19 @@
+# Maintainer: moparisthebest <admin dot archlinux AT moparisthebest dot com>
+
+pkgname=doom-wads
+pkgver=1.0
+pkgrel=1
+pkgdesc="The Ultimate Doom, Final Doom, Doom II IWADs (game data)"
+arch=('any')
+url="http://www.idsoftware.com/games/doom/doom-ultimate"
+license=('custom')
+source=(DOOM.WAD PLUTONIA.WAD TNT.WAD DOOM2.WAD)
+sha256sums=(6fdf361847b46228cfebd9f3af09cd844282ac75f3edbb61ca4cb27103ce2e7f
+            f31395fb5580ef8fee26514b34874f8ab354c78fbbed35c8bfe04ec42ddc0c80
+            be3130f780037d0a640fce5639f4e2df88ce2d36128725a675f9aec1b6048228
+            10d67824b11025ddd9198e8cfc87ca335ee6e2d3e63af4180fa9b8a471893255)
+
+package() {
+  mkdir -p "$pkgdir/usr/share/games/doom/"
+  install -Dm644 *.WAD "$pkgdir/usr/share/games/doom/"
+}
