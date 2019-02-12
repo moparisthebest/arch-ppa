@@ -14,3 +14,10 @@ ppa.cfg
 
 src/doom-wads/*.WAD
 
+# ignore all
+*
+
+# except new PKGBUILDS
+!.gitignore
+!src/*/PKGBUILD
+
