@@ -10,7 +10,8 @@ _cracklib=default
 _ldap=no
 
 pkgname=atheme
-pkgver=7.2.9
+pkgver=7.2.10_r2
+_pkgver="7.2.10-r2"
 pkgrel=1
 pkgdesc="IRC services"
 arch=("i686" "x86_64")
@@ -31,15 +32,18 @@ backup=(
     'etc/atheme/atheme.motd'
 )
 install=atheme.install
-source=("https://github.com/atheme/atheme/releases/download/v${pkgver}/atheme-${pkgver}.tar.bz2"
+source=("https://github.com/atheme/atheme/releases/download/v${_pkgver}/atheme-v${_pkgver}.tar.xz"
         "atheme.service"
 )
-sha256sums=('a87a046aa73fc4a97a11d41cc08c60b835135ba20bb173ca888b40e0d6b54b27'
+sha256sums=('cceceb285283509c9f6dcb20eeb9b816db373a81b55fe49bc11a774b501d687d'
             'ee9ad7658434451184872c21c7fd38196d22d1dfb6b1f37bcfaf8c363d50296f')
 
-build() {
-    cd "atheme-$pkgver"
+pkgver() {
+    echo "$_pkgver" >&2
+    echo "$_pkgver" | tr - _
+}
 
+build() {
     _configure="./configure --prefix=/usr --enable-fhs-paths"
     _configure+=" --sysconfdir=/etc/atheme --localstatedir=/var"
 
@@ -56,16 +60,11 @@ build() {
     [[ $_pcre = yes ]] && _configure+=" --with-pcre"
     [[ $_pcre = no ]]  && _configure+=" --without-pcre"
 
-
-    [[ $_pcre = yes ]] && _configure+=" --with-pcre"
-    [[ $_pcre = no ]]  && _configure+=" --without-pcre"
-
     eval $_configure
     make
 }
 
 package() {
-    cd "atheme-$pkgver"
     make DESTDIR="$pkgdir/" install
     install -Dm0644 "$srcdir/atheme.service" "$pkgdir/usr/lib/systemd/system/atheme.service"
 

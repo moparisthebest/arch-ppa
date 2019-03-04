@@ -1,7 +1,8 @@
-# Maintainer: PlusMinus
+# Maintainer: mwawrzyniak
+# Contributor: PlusMinus
 
 pkgname=evdi
-pkgver=1.5.0.2
+pkgver=1.6.0
 pkgrel=1
 pkgdesc="A Linux® kernel module that enables management of multiple screens."
 arch=('i686' 'x86_64')
@@ -18,12 +19,25 @@ backup=()
 options=()
 install=$pkgname.install
 changelog=$pkgname.Changelog
-source=($pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/DisplayLink/evdi/archive/v$pkgver.tar.gz)
+source=($pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/DisplayLink/evdi/archive/v$pkgver.tar.gz
+        relro.patch)
 noextract=()
-md5sums=('19c7dc3829b2ff84826007e7b4a3c961')
+md5sums=('e59f2372e5aa5719da9995f09725c3c7'
+         '05e64dd295a66c030139d0c8f6f7013b')
+
+prepare() {
+  cd "$pkgname-$pkgver"
+  local src
+  for src in "${source[@]}"; do
+    src="${src%%::*}"
+    src="${src##*/}"
+    [[ $src = *.patch ]] || continue
+    patch -Np1 < "../$src"
+  done
+}
 
 build() {
-# We only need to build the library in this step, dmks will build the module
+# We only need to build the library in this step, dkms will build the module
 cd "$pkgname-$pkgver/library"
 
 make

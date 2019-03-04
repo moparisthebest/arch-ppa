@@ -1,28 +1,21 @@
 # Maintainer: Timothée Ravier <tim@siosm.fr>
 
-pkgname=(python2-dulwich python-dulwich)
-pkgver=0.19.2
-pkgrel=2
+pkgname=(python2-dulwich)
+pkgver=0.19.11
+pkgrel=1
 pkgdesc='Pure-Python implementation of the Git file formats and protocols'
 arch=('any')
 url='https://www.dulwich.io/'
 license=('GPL2')
 depends=()
-makedepends=('python2' 'python')
+makedepends=('python2')
 options=(!emptydirs)
 source=("https://github.com/jelmer/dulwich/archive/dulwich-${pkgver}.tar.gz")
-md5sums=('279c9b467aeafdf397d3a51b1d2364c7')
+md5sums=('9d6b91f14e73f55d5fd69b0fe850bb2d')
 
 build() {
   cd "dulwich-dulwich-${pkgver}"
   python2 setup.py build
-  python setup.py build
-}
-
-package_python-dulwich() {
-  depends=('python')
-  cd "dulwich-dulwich-${pkgver}"
-  python setup.py install --root="$pkgdir/" --skip-build --optimize=1
 }
 
 package_python2-dulwich() {

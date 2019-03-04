@@ -9,7 +9,6 @@ arch=('any')
 url="https://launchpad.net/py3dns"
 license=('Python')
 depends=('python')
-makedepends=('python-setuptools')
 source=("https://launchpad.net/${_realname}/trunk/${pkgver}/+download/${_realname}-${pkgver}.tar.gz")
 md5sums=('683ec2f5243b34f7127cfd0bfc9259c6')
 

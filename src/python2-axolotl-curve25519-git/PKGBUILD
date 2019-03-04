@@ -3,7 +3,7 @@
 
 pkgname='python2-axolotl-curve25519-git'
 _pkgname='python-axolotl-curve25519'
-pkgver=0.4.1.2.r0.g293f9cd
+pkgver=r14.e4a9c4d
 pkgrel=1
 pkgdesc="Python wrapper for curve25519 library"
 url="https://github.com/tgalal/${_pkgname}"

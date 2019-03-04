@@ -20,7 +20,7 @@ source=("https://github.com/inspircd/inspircd/archive/v$pkgver.tar.gz"
         "https://raw.githubusercontent.com/inspircd/inspircd-extras/master/2.0/m_rehashsslsignal.cpp"
         'inspircd.service')
 sha512sums=('56f03c3259fad54365e97fd82f4e309edc60b641ccadd7916d04156fd157858f79930c8b9df99aa98c5505f76ab19e6bcd150ae5ed04d2bddfff572e18226cdd'
-'a5f2a01bbc3e3ba0d5979d5146818edc3c6cfe975f1cdd84b7bb8ceb6ea734d2b3e1cfa8a41551b3ef622df508baddcc0c6f6fe79239026eed6c23cc9e31984f'            
+'a5f2a01bbc3e3ba0d5979d5146818edc3c6cfe975f1cdd84b7bb8ceb6ea734d2b3e1cfa8a41551b3ef622df508baddcc0c6f6fe79239026eed6c23cc9e31984f'
 '5a16a7c237693ffc6a108358f339b6aa2451fb16430561848ae869f890199b38fab6a13640bcc35cf1d07e32d7e5fff405d88668ee05ddaffc2ef61cb42ee832')
 
 build() {
