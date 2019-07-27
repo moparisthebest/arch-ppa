@@ -2,7 +2,7 @@
 # Contributor: svalo <me@valo.space>
 
 pkgname=dino-git
-pkgver=r440.97c59cb
+pkgver=r370.38b5320
 pkgrel=1
 pkgdesc="Simple and modern Jabber/XMPP client written in vala"
 arch=('i686' 'x86_64' 'aarch64')
@@ -40,13 +40,6 @@ build() {
 package() {
     cd "${srcdir}/${pkgname%-git}"
     make DESTDIR="${pkgdir}/" install
-    mv "${pkgdir}/usr/bin/dino" "${pkgdir}/usr/bin/dino.real"
-    cat > "${pkgdir}/usr/bin/dino" <<EOF
-#!/bin/sh
-export GDK_DPI_SCALE=1.5
-exec dino.real
-EOF
-    chmod +x "${pkgdir}/usr/bin/dino"
 }
 
 check() {

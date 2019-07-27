@@ -5,7 +5,7 @@
 _large_network=default
 _pcre=default
 _perl=default
-_contrib=yes
+_contrib=default
 _cracklib=default
 _ldap=no
 
@@ -19,7 +19,7 @@ url="http://www.atheme.org/atheme/"
 license=('custom:ISC')
 # qrencode seems to be optional at build time but with no easy way to disable
 # it aside from uninstalling qrencode
-#depends=('qrencode')
+depends=('qrencode')
 conflicts=('libmowgli' 'xtheme' 'atheme-git')
 optdepends=(
     'pcre: for pcre support'
