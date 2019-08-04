@@ -3,7 +3,7 @@
 pkgname=(chocolate-{doom,heretic,hexen,strife,common}-git)
 _pkgname=${pkgname[0]/-git/}
 pkgdesc="Historically-accurate Doom, Heretic, Hexen, and Strife ports."
-pkgver=3.0.0.r58.a8985916
+pkgver=3.0.0.r804.485b939b
 pkgrel=1
 arch=('i686' 'x86_64')
 url="http://www.chocolate-doom.org/"
