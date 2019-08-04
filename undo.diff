@@ -1,20 +1,5 @@
-diff --git a/src/ampache-git/PKGBUILD b/src/ampache-git/PKGBUILD
-index d3c46f5..90e9ba1 100644
---- a/src/ampache-git/PKGBUILD
-+++ b/src/ampache-git/PKGBUILD
-@@ -3,8 +3,8 @@
- 
- pkgname=ampache-git
- _gitname=ampache
--pkgver=3.8.2.357.g3df9a295
--pkgrel=1
-+pkgver=3.8.1.7.g799165a
-+pkgrel=2
- pkgdesc="A PHP-based tool for managing and playing your audio/video files via a web interface"
- arch=('i686' 'x86_64')
- url="http://www.ampache.org/"
 diff --git a/src/atheme/PKGBUILD b/src/atheme/PKGBUILD
-index 99b97a9..a07ab84 100644
+index d4a9580..33175ec 100644
 --- a/src/atheme/PKGBUILD
 +++ b/src/atheme/PKGBUILD
 @@ -7,7 +7,7 @@ _pcre=default
@@ -25,24 +10,61 @@ index 99b97a9..a07ab84 100644
 +_ldap=default
  
  pkgname=atheme
- pkgver=7.2.9
+ pkgver=7.2.10_r2
 diff --git a/src/biboumi-git/PKGBUILD b/src/biboumi-git/PKGBUILD
-index c7319ea..6155664 100644
+index 626ffec..08c7b70 100644
 --- a/src/biboumi-git/PKGBUILD
 +++ b/src/biboumi-git/PKGBUILD
 @@ -2,7 +2,7 @@
  
  _pkgname=biboumi
  pkgname="$_pkgname-git"
--pkgver=8.2.r18.g21a79b7
-+pkgver=8.2.r11.g5ff3696
+-pkgver=8.2.r83.g3621458
++pkgver=8.2.r74.gcd20177
  pkgrel=1
  pkgdesc="XMPP gateway to IRC"
  arch=('i686' 'x86_64' 'armv7h' 'aarch64')
+diff --git a/src/broadcom-bt-firmware-git/PKGBUILD b/src/broadcom-bt-firmware-git/PKGBUILD
+index 75eefa4..3c570a3 100644
+--- a/src/broadcom-bt-firmware-git/PKGBUILD
++++ b/src/broadcom-bt-firmware-git/PKGBUILD
+@@ -4,8 +4,8 @@ pkgname=broadcom-bt-firmware-git
+ pkgdesc="Broadcom bluetooth firmware."
+ conflicts=('bcm4335c0-firmware' 'bcm4350c5-firmware' 'bcm4356a2-firmware' 'bcm20702a1-firmware' 'bcm20702b0-firmware' 'bcm20703a1-firmware' 'bcm43142a0-firmware')
+ provides=('bcm4335c0-firmware' 'bcm4350c5-firmware' 'bcm4356a2-firmware' 'bcm20702a1-firmware' 'bcm20702b0-firmware' 'bcm20703a1-firmware' 'bcm43142a0-firmware')
+-pkgver=12.0.1.1011_p1.r4.g632c15f
+-pkgrel=1
++pkgver=12.0.1.1011_p1.r3.gc0bd928
++pkgrel=2
+ arch=('any')
+ makedepends=('git')
+ url="https://github.com/winterheart/broadcom-bt-firmware"
+diff --git a/src/chocolate-doom-git/PKGBUILD b/src/chocolate-doom-git/PKGBUILD
+index 319c0ae..f96dbdf 100644
+--- a/src/chocolate-doom-git/PKGBUILD
++++ b/src/chocolate-doom-git/PKGBUILD
+@@ -3,7 +3,7 @@
+ pkgname=(chocolate-{doom,heretic,hexen,strife,common}-git)
+ _pkgname=${pkgname[0]/-git/}
+ pkgdesc="Historically-accurate Doom, Heretic, Hexen, and Strife ports."
+-pkgver=3.0.0.r804.485b939b
++pkgver=3.0.0.r58.a8985916
+ pkgrel=1
+ arch=('i686' 'x86_64')
+ url="http://www.chocolate-doom.org/"
 diff --git a/src/dino-git/PKGBUILD b/src/dino-git/PKGBUILD
-index a7d191a..231a9cf 100644
+index f85dd70..5ac9b14 100644
 --- a/src/dino-git/PKGBUILD
 +++ b/src/dino-git/PKGBUILD
+@@ -2,7 +2,7 @@
+ # Contributor: svalo <me@valo.space>
+ 
+ pkgname=dino-git
+-pkgver=r487.1853ee8
++pkgver=r370.38b5320
+ pkgrel=1
+ pkgdesc="Simple and modern Jabber/XMPP client written in vala"
+ arch=('i686' 'x86_64' 'aarch64')
 @@ -33,7 +33,6 @@ pkgver() {
  build() {
      cd "${srcdir}/${pkgname%-git}"
@@ -52,346 +74,153 @@ index a7d191a..231a9cf 100644
  }
  
 diff --git a/src/emulationstation-git/PKGBUILD b/src/emulationstation-git/PKGBUILD
-index c7d1386..afbce44 100644
+index cb67560..19338ed 100644
 --- a/src/emulationstation-git/PKGBUILD
 +++ b/src/emulationstation-git/PKGBUILD
-@@ -5,7 +5,7 @@
- pkgname=emulationstation-git
+@@ -6,7 +6,7 @@ pkgname=emulationstation-git
  _gitname=EmulationStation
  pkgrel=1
--pkgver=1299.880064c
-+pkgver=1034.99c1ddb
+ epoch=1
+-pkgver=2.4.1.r429.g13819ec0
++pkgver=2.4.1.r392.gb7bec0eb
  pkgdesc="A graphical front-end for emulators with controller navigation. Developed for the Raspbery Pi, but runs on most Linux systems."
  arch=('i686' 'x86_64' 'armv6h' 'armv7h')
  url="https://github.com/RetroPie/EmulationStation"
-diff --git a/src/evdi-git/PKGBUILD b/src/evdi-git/PKGBUILD
-index 5447e88..b8faa15 100644
---- a/src/evdi-git/PKGBUILD
-+++ b/src/evdi-git/PKGBUILD
-@@ -1,43 +1,56 @@
--# Maintainer: ajs124
-+# Maintainer: Chris Severance aur.severach aATt spamgourmet dott com
-+# Contributor: ajs124
- 
--pkgname=evdi-git
--pkgver=1.5.0.r2.r6.ge08998f
-+set -u
-+pkgname='evdi-git'
-+pkgver=1.5.0_r2.r0.gdc3c9d6
-+_pkgver="${pkgver%%.r*}"
- pkgrel=1
--pkgdesc="A Linux® kernel module that enables management of multiple screens. Git version."
-+pkgdesc="A Linux® kernel module that enables management of multiple screens."
-+pkgdesc+=' Git version.'
- arch=('i686' 'x86_64')
--url="https://github.com/DisplayLink/evdi"
-+url='https://github.com/DisplayLink/evdi'
- license=('GPL')
--depends=(dkms)
--makedepends=(git libdrm)
--install=$pkgname.install
--changelog=$pkgname.Changelog
--source=(git+https://github.com/DisplayLink/evdi/)
--md5sums=(SKIP)
--conflicts=(evdi)
--provides=(evdi=$pkgver)
-+depends=('dkms')
-+makedepends=('git' 'libdrm')
-+provides=("evdi=${_pkgver}")
-+conflicts=('evdi')
-+install=${pkgname}.install
-+changelog="${pkgname}.Changelog"
-+_srcdir="${pkgname%-git}"
-+source=("git+https://github.com/DisplayLink/evdi/")
-+sha256sums=('SKIP')
- 
- pkgver() {
--	cd ${pkgname/-git/}
--	git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
-+  set -u
-+  cd "${_srcdir}"
-+  # extra -r interfers with version management
-+  local _t1="$(git describe --tags)" # v1.5.0-r2
-+  local _t1a="${_t1//-/_}"
-+  local _t2="$(git describe --long --tags)" # v1.5.0-r2-0-gdc3c9d6
-+  local _t2a="${_t2//${_t1}/${_t1a}}"
-+  sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g' <<< "${_t2a}"
-+  set +u
- }
- 
- build() {
--	# We only need to build the library in this step, dmks will build the module
--	cd ${pkgname/-git/}/library
--	# hotfix mentioned at https://github.com/DisplayLink/evdi/issues/117
--	sed -i -e 's/#if KERNEL_VERSION(4, 16, 0) <= LINUX_VERSION_CODE/#if KERNEL_VERSION(4, 15, 0) <= LINUX_VERSION_CODE/' ../module/evdi_connector.c
--	make
-+  set -u
-+  # We only need to build the library in this step, dmks will build the module
-+  #cd "${_srcdir}/library"
-+  # DKMS builds are hard to debug. We build it here and throw it away.
-+  cd "${_srcdir}"
-+  make
-+  set +u
- }
- 
- package() {
--	# Predfine some target folders
--	SRCDIR="$pkgdir/usr/src/${pkgname/-git/}-$pkgver"	# This one is needed for dkms
--	LIBNAME=lib${pkgname/-git/}
-+  set -u
-+  cd "${_srcdir}"
-+  install -Dpm755 "library/lib${pkgname%-git}.so" -t "${pkgdir}/usr/lib/"
- 
--	cd ${pkgname/-git/}
--
--	install -D -m 755 library/$LIBNAME.so $pkgdir/usr/lib/$LIBNAME.so
--
--	install -d $SRCDIR
--	install -D -m 755 module/* $SRCDIR
--}
-\ No newline at end of file
-+  local _DKMS="${pkgdir}/usr/src/${pkgname%-git}-${_pkgver}"
-+  install -Dpm644 module/* -t "${_DKMS}/"
-+  make -j1 -C "${_DKMS}" clean
-+  set +u
-+}
-+set +u
-diff --git a/src/filebot/PKGBUILD b/src/filebot/PKGBUILD
-index 25d5210..a90b85c 100644
---- a/src/filebot/PKGBUILD
-+++ b/src/filebot/PKGBUILD
-@@ -16,7 +16,7 @@ url="https://github.com/filebot/filebot"
- license=('GPL')
- install=$pkgname.install
- depends=('java-runtime>=9' 'fontconfig' 'chromaprint')
--makedepends=('unzip' 'apache-ivy' 'jdk>=9' 'git')
-+makedepends=('unzip' 'apache-ivy' 'jdk>=9')
- 
- [[ $CARCH == "i686" ]]   && _intarch=x86
- [[ $CARCH == "x86_64" ]] && _intarch=x86-64
 diff --git a/src/hg-git-hg/PKGBUILD b/src/hg-git-hg/PKGBUILD
-index 9dd2316..48b1bd2 100644
+index 5d3a9c0..48b1bd2 100644
 --- a/src/hg-git-hg/PKGBUILD
 +++ b/src/hg-git-hg/PKGBUILD
 @@ -7,7 +7,7 @@
  #
  name=hg-git
  pkgname=$name-hg
--pkgver=1133.bbad9283f80f
+-pkgver=1169.2135ddef6d6e
 +pkgver=631.711baa274f78
  pkgrel=1
  pkgdesc="the Hg-Git mercurial plugin"
  arch=(any)
-diff --git a/src/inspircd/PKGBUILD b/src/inspircd/PKGBUILD
-index bdd29e8..875e10d 100644
---- a/src/inspircd/PKGBUILD
-+++ b/src/inspircd/PKGBUILD
-@@ -4,7 +4,7 @@
- # Contributor: jibi <jibi@paranoici.org>
- 
- pkgname='inspircd'
--pkgver='2.0.26'
-+pkgver='2.0.24'
- pkgrel='1'
- pkgdesc='A stable, modern and lightweight IRC daemon'
- arch=('any')
-@@ -12,35 +12,36 @@ url='http://www.inspircd.org/'
- license=('GPL2')
- conflicts=('inspircd')
- provides=('inspircd')
--depends=('perl' 'openssl')
--makedepends=('pkg-config' 'geoip')
--optdepends=('geoip: m_geoip')
-+depends=('perl')
-+makedepends=('pkg-config' 'libmariadbclient' 'sqlite3' 'libldap' 'geoip'
-+             'gnutls' 'openssl' 'libgcrypt')
-+optdepends=('gnutls: m_ssl_gnutls'
-+            'libgcrypt: m_ssl_gnutls'
-+            'openssl: m_ssl_openssl'
-+            'libmariadbclient: m_mysql'
-+            'pcre: m_regex_pcre'
-+            'sqlite3: m_sqlite3'
-+            'libldap: m_ldapoper and m_ldapauth'
-+            'geoip: m_geoip')
- install='inspircd.install'
- source=("https://github.com/inspircd/inspircd/archive/v$pkgver.tar.gz"
--        "https://raw.githubusercontent.com/inspircd/inspircd-extras/master/2.0/m_rehashsslsignal.cpp"
-         'inspircd.service')
--sha512sums=('950982629eab0dabeac9e7f2ab6e8b923bc5dafa978280cb91aa28c40997b7cfac2e4d39d74bb4c9cdb8f818205cc17bf782ec86f0aae966cb9c47bbf8143d1a'
--'a5f2a01bbc3e3ba0d5979d5146818edc3c6cfe975f1cdd84b7bb8ceb6ea734d2b3e1cfa8a41551b3ef622df508baddcc0c6f6fe79239026eed6c23cc9e31984f'            
--'5a16a7c237693ffc6a108358f339b6aa2451fb16430561848ae869f890199b38fab6a13640bcc35cf1d07e32d7e5fff405d88668ee05ddaffc2ef61cb42ee832')
-+sha512sums=('766ed9b2786a36c6f3765405b5e02d831ea5ae1089c1b646ed0340b08147f9bb8d477ff94e16b0d9ed02dc109c6273f3772e1bed10bc45d1e9e9b409a37d2b6a'
-+            '5a16a7c237693ffc6a108358f339b6aa2451fb16430561848ae869f890199b38fab6a13640bcc35cf1d07e32d7e5fff405d88668ee05ddaffc2ef61cb42ee832')
- 
- build() {
-   cd "${srcdir}/inspircd-${pkgver}"
- 
--  cp "${srcdir}/m_rehashsslsignal.cpp" src/modules/extra/
--
-   ./configure \
-     --enable-extras=m_geoip.cpp \
--    --enable-extras=m_rehashsslsignal.cpp \
--    --enable-extras=m_ssl_openssl.cpp
--#    --enable-extras=m_ldapauth.cpp \
--#    --enable-extras=m_ldapoper.cpp \
--#    --enable-extras=m_mysql.cpp \
--#    --enable-extras=m_regex_pcre.cpp \
--#    --enable-extras=m_regex_posix.cpp
--#    --enable-extras=m_sqlite3.cpp
-+    --enable-extras=m_ldapauth.cpp \
-+    --enable-extras=m_ldapoper.cpp \
-+    --enable-extras=m_mysql.cpp \
-+    --enable-extras=m_regex_pcre.cpp \
-+    --enable-extras=m_regex_posix.cpp \
-+    --enable-extras=m_sqlite3.cpp
- 
-   ./configure \
--    --enable-openssl \
-     --uid=0 \
-     --prefix=/usr/lib/inspircd \
-     --binary-dir=/usr/bin \
-@@ -48,6 +49,8 @@ build() {
-     --config-dir=/etc/inspircd \
-     --data-dir=/var/lib/inspircd \
-     --log-dir=/var/log/inspircd \
-+    --enable-gnutls \
-+    --enable-openssl \
-     --enable-epoll
- 
-   make
-diff --git a/src/intellij-idea-ultimate-edition/PKGBUILD b/src/intellij-idea-ultimate-edition/PKGBUILD
-index c7cbc79..cfa993b 100644
---- a/src/intellij-idea-ultimate-edition/PKGBUILD
-+++ b/src/intellij-idea-ultimate-edition/PKGBUILD
+diff --git a/src/kiwiirc/PKGBUILD b/src/kiwiirc/PKGBUILD
+index 0beb339..e679c19 100644
+--- a/src/kiwiirc/PKGBUILD
++++ b/src/kiwiirc/PKGBUILD
 @@ -1,7 +1,7 @@
- # Maintainer: Urs Wolfer <uwolfer @ fwo.ch>
- 
- pkgbase=intellij-idea-ultimate-edition
--pkgname=intellij-idea-ultimate-edition
-+pkgname=(intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre)
- pkgver=2018.1.5
- _buildver=181.5281.24
+ # Maintainer: Jingbei Li <i@jingbei.li>
+ # Contributor: Jack Allnutt <jack@allnutt.eu>
+ pkgname=kiwiirc
+-pkgver=1.1.0.r2724.g458c5bbd
++pkgver=1.1.0.r2044.g4c979963
  pkgrel=1
-@@ -20,7 +20,7 @@ prepare() {
-   mv idea-IU-$_buildver/jre64 "$srcdir"/jre64
- }
- 
--package() {
-+package_intellij-idea-ultimate-edition() {
-   backup=("opt/$pkgname/bin/idea.vmoptions" "opt/${pkgname}/bin/idea64.vmoptions" "opt/${pkgname}/bin/idea.properties")
-   depends=('giflib' 'libxtst')
-   optdepends=('intellij-idea-ultimate-edition-jre: JetBrains custom JRE (Recommended)' 'java-environment: Required if intellij-idea-ultimate-edition-jre is not installed')
-@@ -41,4 +41,10 @@ package() {
-   sed -i 's|lcd|on|'  "$pkgdir"/opt/$pkgname/bin/*.vmoptions
- }
- 
-+package_intellij-idea-ultimate-edition-jre() {
-+  arch=('x86_64')
-+  install -d -m 755 "$pkgdir"/opt/$pkgbase
-+  mv "$srcdir"/jre64 "$pkgdir"/opt/$pkgbase
-+}
-+
- # vim:set ts=2 sw=2 et:
-diff --git a/src/jdk-devel/jdk-devel.install b/src/jdk-devel/jdk-devel.install
-index 6b327f5..1e90a7b 100644
---- a/src/jdk-devel/jdk-devel.install
-+++ b/src/jdk-devel/jdk-devel.install
-@@ -1,4 +1,4 @@
--VERSION='11'
-+VERSION='<version>'
- THIS_JAVA='java-${VERSION}-jdk'
- NAME='JDK Devel'
- 
-diff --git a/src/jdk/jdk.install b/src/jdk/jdk.install
-index 701d44a..8c38f1a 100644
---- a/src/jdk/jdk.install
-+++ b/src/jdk/jdk.install
-@@ -1,4 +1,4 @@
--VERSION='10'
-+VERSION='<version>'
- THIS_JAVA='java-${VERSION}-jdk'
- NAME='JDK'
- 
-diff --git a/src/jitsi/PKGBUILD b/src/jitsi/PKGBUILD
-index 329ed52..6c6bd1b 100644
---- a/src/jitsi/PKGBUILD
-+++ b/src/jitsi/PKGBUILD
-@@ -8,8 +8,8 @@ pkgdesc="An audio/video SIP VoIP phone and instant messenger written in Java (fo
- arch=('i686' 'x86_64')
- url="http://jitsi.org"
- license=('apache')
--depends=('java-runtime=8')
--makedepends=('apache-ant' 'java-environment-common' 'java-environment=8')
-+depends=('java-runtime')
-+makedepends=('apache-ant' 'java-environment-common')
- options=(!strip !emptydirs zipman !libtool docs)
- source=("https://download.jitsi.org/jitsi/src/jitsi-src-${pkgver}.zip"
- 		jitsi.desktop
+ pkgdesc="A hand-crafted web-based IRC client that you can enjoy"
+ arch=('any')
 diff --git a/src/movim-git/PKGBUILD b/src/movim-git/PKGBUILD
-index cd8dd34..33123d5 100644
+index da0e13a..108304d 100644
 --- a/src/movim-git/PKGBUILD
 +++ b/src/movim-git/PKGBUILD
 @@ -3,7 +3,7 @@
  
  _pkgbase='movim'
  pkgname=movim-git
--pkgver=r6859.eeb15ce8
-+pkgver=r6815.8fba1ad6
+-pkgver=r7308.8a32ba694
++pkgver=r7476.b0934832f
  pkgrel=1
  pkgdesc="Movim is a decentralized social network, written in PHP and HTML5 and based on the XMPP standard protocol."
  arch=('any')
+@@ -53,10 +53,10 @@ package() {
+ 
+   install -m755 -d "$pkgdir/usr/share/webapps/$_pkgbase"
+ 
+-  cp -r app database lib locales src theme vendor \
++  cp -r app database lib locales public src vendor \
+     "$pkgdir/usr/share/webapps/$_pkgbase"
+-  install -Dm644 VERSION CHANGELOG.md INSTALL.md README.md index.php \
+-    linker.php phinx.php "$pkgdir/usr/share/webapps/$_pkgbase"
++  install -Dm644 CHANGELOG.md doap.xml INSTALL.md linker.php phinx.php \
++    README.md VERSION "$pkgdir/usr/share/webapps/$_pkgbase"
+   install -Dm755 daemon.php "$pkgdir/usr/share/webapps/$_pkgbase"
+ 
+   # Configuration file
+@@ -68,4 +68,4 @@ sha256sums=('SKIP'
+             '5dfff91dd4a54f3d3713530e204370a96d37898b670a61123d8cad42f92da306'
+             '813d580300ee5bb7f1f9603db2404f5af67fd02f49017708d4adb919d4422045'
+             'c8b569f1eafb97d8d03bbaabb9b4d6ed3415f922a05a52bd865942676368f4c5'
+-            'e3cd2ceb71f4ef4689028313188def52aa19859e35aa8abcaa200495cd187935')
++            'd7847c2b5d9897122168c66493bc72200432c2b15317e38afbfb06a8500257a2')
 diff --git a/src/openconnect-git/PKGBUILD b/src/openconnect-git/PKGBUILD
-index 9a73773..934043e 100644
+index 55ccfbd..bedbece 100644
 --- a/src/openconnect-git/PKGBUILD
 +++ b/src/openconnect-git/PKGBUILD
-@@ -2,8 +2,8 @@
+@@ -2,7 +2,7 @@
  
  pkgname=openconnect-git
  _pkgname=openconnect
--pkgver=7.08.r91.gf0f990c
--pkgrel=1
-+pkgver=7.06.r93.g11ad105
-+pkgrel=2
+-pkgver=8.03.r53.g2b9bc4d9
++pkgver=7.08.r127.g8977877
+ pkgrel=1
  pkgdesc="Open client for Cisco AnyConnect VPN"
  arch=('i686' 'x86_64')
- license=('GPL')
 diff --git a/src/prosody-hg-stable/PKGBUILD b/src/prosody-hg-stable/PKGBUILD
-index ea8313a..6df4c49 100644
+index 6517730..6df4c49 100644
 --- a/src/prosody-hg-stable/PKGBUILD
 +++ b/src/prosody-hg-stable/PKGBUILD
 @@ -8,7 +8,7 @@
  
  pkgname=prosody-hg-stable
  pkgrel=1
--pkgver=0.10.r7564+.9e565d0b1771+
+-pkgver=0.10.r7593+.7e053c022782+
 +pkgver=0.10.r7499+.3d21c63ec03f+
  pkgver() {
    cd "$srcdir/prosody-hg"
    printf "0.10.r%s.%s" "$(hg identify -n)" "$(hg identify -i)"
-diff --git a/src/python-pycares/PKGBUILD b/src/python-pycares/PKGBUILD
-index ea97d8d..da1a9fd 100644
---- a/src/python-pycares/PKGBUILD
-+++ b/src/python-pycares/PKGBUILD
-@@ -7,7 +7,6 @@ arch=('i686' 'x86_64')
- url="https://github.com/saghul/pycares"
- license=('MIT')
- depends=('python')
--makedepends=('python-setuptools')
+diff --git a/src/python2-axolotl-curve25519-git/PKGBUILD b/src/python2-axolotl-curve25519-git/PKGBUILD
+index 5423d86..cf6af48 100644
+--- a/src/python2-axolotl-curve25519-git/PKGBUILD
++++ b/src/python2-axolotl-curve25519-git/PKGBUILD
+@@ -3,7 +3,7 @@
  
- source=("https://github.com/saghul/$_pkgname/archive/$_pkgname-${pkgver}.tar.gz")
- sha512sums=('d9a910b529d3b070b1685f6d89458404f22a5aa7002b01c1772f3eff548e9764826454c41bb69bf2f5b663df39cd1fb71b599b5f1ea88e197218e02942af67c7')
+ pkgname='python2-axolotl-curve25519-git'
+ _pkgname='python-axolotl-curve25519'
+-pkgver=0.4.1.2.r0.g293f9cd
++pkgver=r14.e4a9c4d
+ pkgrel=1
+ pkgdesc="Python wrapper for curve25519 library"
+ url="https://github.com/tgalal/${_pkgname}"
+diff --git a/src/python2-axolotl-git/PKGBUILD b/src/python2-axolotl-git/PKGBUILD
+index dccbe50..948fff2 100644
+--- a/src/python2-axolotl-git/PKGBUILD
++++ b/src/python2-axolotl-git/PKGBUILD
+@@ -3,7 +3,7 @@
+ 
+ pkgname='python2-axolotl-git'
+ _pkgname='python-axolotl'
+-pkgver=0.2.3.r0.gcc82fd5
++pkgver=0.1.39.r0.g37c5c55
+ pkgrel=1
+ pkgdesc="Python port of libaxolotl"
+ url="https://github.com/tgalal/python-axolotl"
+diff --git a/src/qemu-user-static/PKGBUILD b/src/qemu-user-static/PKGBUILD
+index 4c500a2..0d10cea 100644
+--- a/src/qemu-user-static/PKGBUILD
++++ b/src/qemu-user-static/PKGBUILD
+@@ -32,7 +32,6 @@ build() (
+   cd build-user-static
+ 
+   ../qemu-${pkgver}/configure \
+-    --python=/bin/python2 \
+     --prefix=/usr \
+     --sysconfdir=/etc \
+     --localstatedir=/var \
 diff --git a/src/redis-desktop-manager/PKGBUILD b/src/redis-desktop-manager/PKGBUILD
-index fff4c25..c6696ad 100644
+index bbcfb25..3fbc74e 100644
 --- a/src/redis-desktop-manager/PKGBUILD
 +++ b/src/redis-desktop-manager/PKGBUILD
-@@ -19,7 +19,7 @@ depends=(
+@@ -18,7 +18,7 @@ depends=(
    'qt5-graphicaleffects'
    'qt5-svg'
    'libssh2')
--makedepends=('git' 'gcc' 'python2')
-+makedepends=('git' 'gcc')
+-makedepends=('git' 'gcc' 'python2' 'python')
++makedepends=('git' 'gcc' 'python2')
  conflicts=('redis-desktop-manager-bin')
- source=("rdm::git://github.com/uglide/RedisDesktopManager.git#tag=${_pkgver}"
+ source=("rdm::git://github.com/uglide/RedisDesktopManager.git#tag=$pkgver"
          'rdm.sh'
 diff --git a/src/rootmp-hook/PKGBUILD b/src/rootmp-hook/PKGBUILD
 index b2504dd..e6620b1 100755
@@ -405,32 +234,21 @@ index b2504dd..e6620b1 100755
  source=(${pkgname%-git}::git+http://github.com/jim945/rootmp-hook.git)
  
  package() {
-diff --git a/src/rusty-keys-git/PKGBUILD b/src/rusty-keys-git/PKGBUILD
-index 0774bfc..ab9fa53 100644
---- a/src/rusty-keys-git/PKGBUILD
-+++ b/src/rusty-keys-git/PKGBUILD
-@@ -1,7 +1,7 @@
- # Maintainer: moparisthebest <admin dot archlinux AT moparisthebest dot com>
- 
- pkgname=rusty-keys-git
--pkgver=0.0.2.r15.g0e58664
-+pkgver=0.0.2.r11.g99cf9c4
- pkgrel=1
- pkgdesc="uinput level keyboard mapper for linux"
- url="https://code.moparisthebest.com/moparisthebest/rusty-keys"
-diff --git a/src/truecraft-git/PKGBUILD b/src/truecraft-git/PKGBUILD
-index 97c489b..0be8f21 100644
---- a/src/truecraft-git/PKGBUILD
-+++ b/src/truecraft-git/PKGBUILD
-@@ -2,7 +2,7 @@
- 
- _pkgname=truecraft
- pkgname=truecraft-git
--pkgver=r816.90160bd
-+pkgver=r799.9a61e73
- pkgrel=1
- epoch=1
- pkgdesc="A completely clean-room implementation of Minecraft beta 1.7.3 (circa September 2011)."
+diff --git a/src/ternimal-git/PKGBUILD b/src/ternimal-git/PKGBUILD
+index fc92d3a..ba2b5ed 100644
+--- a/src/ternimal-git/PKGBUILD
++++ b/src/ternimal-git/PKGBUILD
+@@ -1,8 +1,8 @@
+ # Maintainer: xiretza <xiretza+aur@gmail.com>
+ _pkgname=ternimal
+ pkgname="${_pkgname}-git"
+-pkgver=r9.e7953b4
+-pkgrel=1
++pkgver=r5.2eea4f4
++pkgrel=2
+ pkgdesc="Simulate a lifeform in the terminal"
+ arch=('x86_64' 'i686' 'armv7h')
+ url="https://github.com/p-e-w/ternimal"
 diff --git a/src/zpaq/PKGBUILD b/src/zpaq/PKGBUILD
 index 875e4a6..d928d48 100644
 --- a/src/zpaq/PKGBUILD
