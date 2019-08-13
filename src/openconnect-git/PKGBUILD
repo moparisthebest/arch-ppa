@@ -2,7 +2,7 @@
 
 pkgname=openconnect-git
 _pkgname=openconnect
-pkgver=8.03.r53.g2b9bc4d9
+pkgver=8.03.r56.g51676600
 pkgrel=1
 pkgdesc="Open client for Cisco AnyConnect VPN"
 arch=('i686' 'x86_64')
