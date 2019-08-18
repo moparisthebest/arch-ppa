@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# this is meant to be put in /usr/bin and allowed to use for for a user
+# cp /home/ppa/arch-ppa/arch-chroot-helper /usr/bin/; chown root.root /usr/bin/arch-chroot-helper; chmod 555 /usr/bin/arch-chroot-helper
+# then add this using visudo:
+# ppa  ALL= NOPASSWD: /usr/bin/arch-chroot-helper
+
+ccm_root='/scratch/.chroot64'
+
+prepare() {
+    if [ -d "${ccm_root}/root" ]; then
+        # this exists, so just update it
+        arch-nspawn "${ccm_root}/root" pacman -Syu --noconfirm
+        #yes | arch-nspawn "${ccm_root}/root" pacman -Scc
+    else
+        # does not exist, create it...
+        mkdir -p "${ccm_root}"
+        mkarchroot -C /etc/pacman.conf -M /etc/makepkg.conf "${ccm_root}/root" base-devel
+    fi
+}
+
+nuke() {
+    rm -rf "${ccm_root}"
+}
+
+make() {
+    set -e
+    prepare
+    makechrootpkg -c -u -r "${ccm_root}"
+}
+
+case $1 in
+    prepare)
+        prepare
+        exit $?
+        ;;
+    nuke)
+        nuke
+        exit $?
+        ;;
+    make)
+        make
+        exit $?
+        ;;
+    *)
+        echo "Must specify command: prepare, nuke, make"
+        exit 1
+esac

@@ -8,8 +8,6 @@ basedir="$(pwd)"
 src_dir="${basedir}/src"
 repo_name=aur
 pkg_dir="${basedir}/$repo_name"
-ccm='sudo ccm64'
-ccm_root='/scratch/chroot64'
 aurweb='https://aur.archlinux.org'
 
 if [ `whoami` == 'root' ]; then
@@ -76,7 +74,6 @@ sign_packages() {
 build() {
     cd "$src_dir"
     if [ "$#" -gt 0 ]; then
-        $ccm d
         failed=''
         # create .SRCINFO, so aurqueue can use it next
         for dir in "$@"
@@ -88,27 +85,31 @@ build() {
         for dir in $(aurqueue "$@")
         do
             cd $dir
-            $ccm s || failed="$failed $dir"
+            # delete any existing packages
+            grep '^pkgname = ' .SRCINFO | sed 's/^pkgname = //' | xargs -I {} sh -c 'rm -f {}*pkg.tar*'
+            sudo arch-chroot-helper make
+            if [ $? -ne 0 ]; then
+                # failed, append to failed string
+                failed="$failed $dir"
+            else
+                #list_of_packages="$(grep '^pkgname = ' .SRCINFO | sed 's/^pkgname = //' | sort -u | tr '\n' ' ')"
+                list_of_package_files="$(grep '^pkgname = ' .SRCINFO | sed 's/^pkgname = //' | xargs -I {} sh -c 'ls {}*pkg.tar*' 2>/dev/null | sort -u | tr '\n' ' ')"
+                mv $list_of_package_files "$pkg_dir"
+                cd "$pkg_dir"
+                sign_packages $list_of_package_files
+                # repose appears to work the same with both $list_of_packages and $list_of_package_files
+                repose -f -z $repo_name $list_of_package_files
+                sign_packages $repo_name.db $repo_name.files
+            fi
             cd "$src_dir"
         done
-
-        # save packages
-        cd "$pkg_dir"
-        for pkg in "$ccm_root"/root/repo/*pkg.tar*
-        do
-            mv "$pkg" .
-            sign_packages "$(basename "$pkg")"
-        done
-        repose -f -z $repo_name
-        sign_packages $repo_name.db $repo_name.files
 
         if [ "$failed" == "" ]
         then
             # success!, nuke the chroot
-            echo $ccm n
+            echo sudo arch-chroot-helper nuke
         else
-            # some failures, just delete the packages
-            $ccm d
+            # some failures
             echo "failed packages:$failed"
         fi
 
@@ -119,7 +120,7 @@ build() {
 
 rebuild_db() {
     cd "$pkg_dir"
-    repose -f -z $repo_name
+    repose -v -f -z $repo_name
     sign_packages $repo_name.db $repo_name.files
 }
 
