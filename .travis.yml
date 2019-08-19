@@ -1,0 +1,30 @@
+language: minimal
+
+env:
+
+# removed linux-aufs-lts webkitgtk
+
+  - TAG=1 PKGS_TO_BUILD_IN_ORDER="qemu-user-static popstation_md mkinitcpio-utils truecraft-git popstation pkgsync evdi displaylink pi-hole-ftl pi-hole-standalone pi-hole-server rootmp-hook mkinitcpio-dropbear perl-file-libmagic lua51-event memtest86-efi fuse-zip searx python2-schedule python-pydns python-pyspf python-postfix-policyd-spf wide-dhcpv6 broadcom-bt-firmware-git ucspi-tcp mkinitcpio-tinyssh evdi-git xboxdrv nextcloud-app-user-sql zpaq searx-py3 reprepro openhardwaremonitor python2-axolotl-curve25519-git python2-axolotl-git rusty-keys-git python-pycares libgcj17-bin pdftk-bin alt-version-switcher rusty-keys python-sleekxmpp sendxmpp-py ttf-ms-fonts ccextractor python2-dulwich hg-git-hg sonarr sendxmpp-rs visual-studio-code-bin runescape-launcher sendxmpp-rs-git zelda-roth"
+
+  - TAG=2 PKGS_TO_BUILD_IN_ORDER="nginx-mainline-rtmp clean-chroot-manager php-zmq dex2jar distccd-alarm prosody-mod-s2s-auth-dane crispy-doom gajim-plugin-omemo ts-spooler pcem intellij-idea-ultimate-edition atheme nextcloud-app-passman brother-hl2170w comskip odamex emulationstation-autoscraper wireguard-module-arch cryptsetup-multidisk mprime python2-pyliblzma webhook luaunbound react-native-cli nextcloud-app-user-external scallion emulationstation-themes ternimal-git kodi-standalone-socket-activation freeradius-client libpcl ocserv qt5-webengine-widevine wallabag"
+
+  - TAG=3 PKGS_TO_BUILD_IN_ORDER="python-rtslib-fb python-configshell-fb targetcli-fb php-imagick movim-git jdk6 kiwiirc htmlcxx lgogdownloader bitpim-release ttf-oxygen makemkv vdfuse stoken trousers openconnect-git chocolate-doom srb2-data srb2 filebot"
+  
+  - TAG=4 PKGS_TO_BUILD_IN_ORDER="chocolate-doom-git biboumi-git dino-git factorio-demo ncurses5-compat-libs android-emulator isl osl cloog"
+  
+  - TAG=5 PKGS_TO_BUILD_IN_ORDER="redis-desktop-manager inspircd perl-sys-virt hivex libguestfs"
+  
+  - TAG=6 PKGS_TO_BUILD_IN_ORDER="libplatform-legacy minecraft cryptsetup-multidisk-ssh ffmpeg-omx lua-zlib archivemount mkinitcpio-netconf libresonic kodi-standalone-service prosody-hg-stable bluez-utils-compat binfmt-support panda3d emulationstation-git binfmt-qemu-static doom-wads coturn python-authres"
+  
+#  - TAG=7 PKGS_TO_BUILD_IN_ORDER=""
+
+#  - TAG=8 PKGS_TO_BUILD_IN_ORDER="mingw-w64-headers mingw-w64-headers-bootstrap mingw-w64-binutils mingw-w64-gcc-base mingw-w64-crt mingw-w64-winpthreads mingw-w64-gcc"
+
+
+services:
+  - docker
+
+script:
+  - docker build --build-arg PKGS_TO_BUILD_IN_ORDER="$PKGS_TO_BUILD_IN_ORDER" -t moparisthebest/aur:travis-ci-$TAG . || travis_terminate 1;
+  - echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin || travis_terminate 1;
+  - docker push moparisthebest/aur:travis-ci-$TAG || travis_terminate 1;

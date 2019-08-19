@@ -1,0 +1,10 @@
+kind: pipeline
+name: default
+
+steps:
+- name: docker  
+  image: plugins/docker
+  settings:
+    dry_run: true
+    repo: moparisthebest/arch-ppa
+    tags: latest
