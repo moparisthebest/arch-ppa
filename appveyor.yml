@@ -1,0 +1,5 @@
+version: 1.0.{build}
+image: ubuntu
+
+build_script:
+  - docker build -t moparisthebest/arch-ppa .
