@@ -8,7 +8,7 @@ ENV PKGS_TO_BUILD_IN_ORDER=$PKGS_TO_BUILD_IN_ORDER
 RUN mkdir -p /build/ /repo/ /var/cache/pacman/pkg/ && chown nobody: /build/ /repo/ && \
     echo -e '[aur]\nSigLevel = Never\nServer = file:///repo' >> /etc/pacman.conf && repo-add /repo/aur.db.tar.gz && \
     echo 'COMPRESSXZ=(xz -c -z - --threads=0)' >> /etc/makepkg.conf && \
-    pacman -Syu --noconfirm sudo base-devel && \
+    pacman -Syu --noconfirm base sudo base-devel && \
     echo -e 'nobody  ALL= NOPASSWD: /usr/bin/pacman\nnobody  ALL= NOPASSWD: /usr/bin/makepkg' > /etc/sudoers.d/nobody
 
 COPY . /build/
