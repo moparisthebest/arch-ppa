@@ -38,3 +38,5 @@ rm -f "$PKGDEST/"*.tar.gz.old
 [ "$failed" != '' ] && echo "failed packages: $failed"
 
 echo -n "$failed" > "$PKGDEST/failed.txt"
+
+grep -- '---failed---$' "$PKGDEST/build.log"
