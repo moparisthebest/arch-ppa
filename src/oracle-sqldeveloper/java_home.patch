@@ -1,0 +1,23 @@
+diff --git a/ide/bin/launcher.sh b/ide/bin/launcher.sh
+index da23d23..55c8e91 100644
+--- a/ide/bin/launcher.sh
++++ b/ide/bin/launcher.sh
+@@ -925,18 +925,6 @@ GetDefaultJDK()
+   #
+   if [ -f "$tmpvar" ]
+   then
+-    while [ -h "$tmpvar" ]
+-    do
+-        EchoIfVerbose "Found symlinked JDK, following symlink: $tmpvar"
+-        tmpvar2=`ls -ls "$tmpvar"`
+-        tmpvar2=`expr "$tmpvar2" : '.*-> \(.*\)$'`
+-        if [ `expr "$tmpvar2" : "\.\/"` -gt 0 -o `expr "$tmpvar2" : "\.\.\/"` -gt 0 -o `expr "$tmpvar2" : ".*/.*"` -le 0 ]
+-        then
+-          tmpvar="`dirname "$tmpvar"`/$tmpvar2"
+-        else
+-          tmpvar="$tmpvar2"
+-        fi
+-    done
+     tmpvar=`expr "$tmpvar" : '\(.*\)\/bin\/[^\/]*$'`
+     SetJavaHome "$tmpvar"
+     EchoIfVerbose "Found existing default JDK $tmpvar"
