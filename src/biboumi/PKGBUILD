@@ -8,7 +8,7 @@ arch=('x86_64' 'armv7h' 'aarch64')
 url="https://biboumi.louiz.org/"
 license=('ZLIB')
 depends=('expat' 'libidn' 'udns' 'botan' 'sqlite' 'postgresql-libs')
-makedepends=('cmake' 'ninja' 'python-sphinx' 'python-sphinx_rtd_theme')
+makedepends=('cmake' 'ninja' 'python-sphinx' 'python-sphinx_rtd_theme' 'git')
 backup=("etc/$pkgname/$pkgname.cfg")
 source=("https://git.louiz.org/biboumi/snapshot/$pkgname-$pkgver.tar.xz"
         'biboumi.tmpfiles'
