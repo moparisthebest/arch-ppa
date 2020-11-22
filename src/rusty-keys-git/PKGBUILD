@@ -1,7 +1,7 @@
 # Maintainer: moparisthebest <admin dot archlinux AT moparisthebest dot com>
 
 pkgname=rusty-keys-git
-pkgver=0.0.2.r19.gd3aeede
+pkgver=0.0.2.r18.g0ffc169
 pkgrel=1
 pkgdesc="uinput level keyboard mapper for linux"
 url="https://code.moparisthebest.com/moparisthebest/rusty-keys"

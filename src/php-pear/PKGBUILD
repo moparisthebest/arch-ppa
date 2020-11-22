@@ -9,11 +9,12 @@ pkgdesc='PHP Extension and Application Repository'
 url='https://pear.php.net/package/pearweb_phars/'
 depends=('php')
 license=('PHP')
-source=("install-pear-nozlib-${pkgver}.phar::https://github.com/pear/pearweb_phars/raw/v${pkgver}/install-pear-nozlib.phar")
-#        "install-pear-nozlib-${pkgver}.phar.sig::https://github.com/pear/pearweb_phars/raw/v${pkgver}/install-pear-nozlib.sig")
+source=("install-pear-nozlib-${pkgver}.phar::https://github.com/pear/pearweb_phars/raw/v${pkgver}/install-pear-nozlib.phar"
+        "install-pear-nozlib-${pkgver}.phar.sig::https://github.com/pear/pearweb_phars/raw/v${pkgver}/install-pear-nozlib.sig")
 backup=('etc/php/pear.conf')
-sha256sums=('4cb4704e956b78b24332ab22fd0cb4c99d5574445a858a7d64731f00a90a28ba')
-#validpgpkeys=('10F68CF73F8AA426F617752972A321BAC245F175')
+sha256sums=('4cb4704e956b78b24332ab22fd0cb4c99d5574445a858a7d64731f00a90a28ba'
+            'SKIP')
+validpgpkeys=('10F68CF73F8AA426F617752972A321BAC245F175')
 
 package() {
 	PHP_PEAR_SYSCONF_DIR=/etc/php \
