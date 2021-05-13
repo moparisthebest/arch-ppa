@@ -2,14 +2,14 @@
 # Contributor: svalo <me@valo.space>
 
 pkgname=dino-git
-pkgver=r721.cd3a119
+pkgver=v0.2.0.r28.gad031ee3
 pkgrel=1
 pkgdesc="Simple and modern Jabber/XMPP client written in vala"
 arch=('i686' 'x86_64' 'aarch64')
-url="https://github.com/dino/dino"
+url="https://dino.im/"
 license=('GPL3')
-depends=('glib2>=2.38' 'glib-networking' 'gtk3>=3.22' 'gpgme' 'libgee>=0.10' 'libgcrypt' 'libsoup' 'sqlite' 'qrencode' 'libsignal-protocol-c' )
-makedepends=('git' 'cmake' 'vala>=0.34' 'ninja')
+depends=('glib2>=2.38' 'glib-networking' 'gtk3>=3.22' 'gpgme' 'libgee>=0.10' 'libgcrypt' 'libsoup' 'sqlite' 'qrencode' 'libsignal-protocol-c' 'gspell' )
+makedepends=('git' 'cmake' 'vala>=0.34' 'ninja' 'ttf-liberation')
 optdepends=('libcanberra: audio notification support')
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
@@ -30,13 +30,12 @@ sha512sums=('SKIP')
 
 pkgver() {
     cd "${srcdir}/${pkgname%-git}"
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
     cd "${srcdir}/${pkgname%-git}"
     ./configure $_DISABLE_PLUGINS $_ENABLE_PLUGINS --with-tests --prefix="/usr" CC="$CC" CFLAGS="$CFLAGS" VALACFLAGS="$VALACFLAGS"
-    sed -i '/SrvRecordsTls/d' libdino/src/service/module_manager.vala
     sed -i 's/try{/try{\n        GLib.Environment.set_variable("GDK_DPI_SCALE", "1.5", false);/' main/src/main.vala
     make
 }
