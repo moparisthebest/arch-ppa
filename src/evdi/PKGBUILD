@@ -1,15 +1,15 @@
-# Maintainer: mwawrzyniak
+# Maintainer: mwawrzyniak <arch at cmstactical dot net>
 # Contributor: PlusMinus
 
 pkgname=evdi
-pkgver=1.6.2
+pkgver=1.9.1
 pkgrel=1
 pkgdesc="A Linux® kernel module that enables management of multiple screens."
 arch=('i686' 'x86_64')
 url="https://github.com/DisplayLink/evdi"
 license=('GPL')
 groups=()
-depends=(dkms libdrm)
+depends=(glibc dkms libdrm)
 makedepends=()
 optdepends=()
 provides=()
@@ -19,11 +19,9 @@ backup=()
 options=()
 install=$pkgname.install
 changelog=$pkgname.Changelog
-source=($pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/DisplayLink/evdi/archive/v$pkgver.tar.gz
-        relro.patch)
+source=($pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/DisplayLink/evdi/archive/v$pkgver.tar.gz)
 noextract=()
-md5sums=('11e968a27f2432d2c50738976b7f847f'
-         '05e64dd295a66c030139d0c8f6f7013b')
+md5sums=('e56d5acf08d67706e297a9a8c09e0a20')
 
 prepare() {
   cd "$pkgname-$pkgver"
