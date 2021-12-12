@@ -1,0 +1,25 @@
+_add_server_user() {
+	if ! getent passwd unvanquished >/dev/null; then
+		useradd -rM -d /var/lib/unvanquished-server -c "Unvanquished dedicated server" -s /bin/false unvanquished
+	fi
+}
+
+_delete_server_user() {
+	if getent passwd unvanquished >/dev/null; then
+		userdel unvanquished
+		groupdel unvanquished
+	fi
+}
+
+_chown_server_home() {
+	chown -R unvanquished:unvanquished /var/lib/unvanquished-server
+}
+
+post_install() {
+	_add_server_user
+	_chown_server_home
+}
+
+post_remove() {
+	_delete_server_user
+}
