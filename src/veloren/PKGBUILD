@@ -3,19 +3,19 @@
 
 export GIT_LFS_SKIP_SMUDGE=1 # This is to prevent Git LFS errors 
 pkgname=veloren
-pkgver=0.10.0
-pkgrel=1
+pkgver=0.12.0
+pkgrel=3
 pkgdesc='An open-world, open-source multiplayer voxel RPG'
 arch=('x86_64' 'i686')
 url='https://veloren.net/'
 license=('GPL3')
 options=('!strip') # This makes debugging issues easier sometimes, comment out if small package size is needed
 depends=('alsa-lib' 'glslang' 'libxkbcommon-x11' 'pulseaudio-alsa' 'vulkan-icd-loader')
-makedepends=('atk' 'cairo' 'gdk-pixbuf2' 'git' 'git-lfs' 'openssl' 'pango' 'python' 'rustup' 'systemd' 'cmake')
-provides=("$pkgname")
-conflicts=("$pkgname")
+makedepends=('atk' 'cairo' 'cmake' 'gdk-pixbuf2' 'git' 'git-lfs' 'openssl' 'pango' 'python' 'rustup' 'systemd')
+provides=()
+conflicts=()
 _repo='https://gitlab.com/veloren/veloren.git'
-source=("$pkgname"::"git+$_repo#tag=v$pkgver")
+source=("$pkgname"::"git+$_repo#commit=a22f03563819725af9477c61efc3cc569858a917")
 noextract=()
 sha512sums=('SKIP')
 

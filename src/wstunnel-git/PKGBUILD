@@ -1,0 +1,38 @@
+# Maintainer : Johnathan Jenkins <twodopeshaggy@gmail.com>
+# Contributor: Drew Liszewski <drew dot liszewski at gmail dot com>
+# Contributor: Daniel Varga <varga dot daniel at gmx dot de>
+
+pkgname=wstunnel-git
+_gitname=wstunnel
+pkgrel=1
+epoch=1
+pkgver=2.0.r12.g2fc8aed
+pkgdesc="Tunneling over websocket protocol."
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+url="https://github.com/erebe/wstunnel"
+license=('MIT')
+makedepends=('git' 'stack' 'ghc')
+#depends=('boost-libs')
+source=('git://github.com/erebe/wstunnel.git')
+md5sums=('SKIP')
+provides=('wstunnel')
+
+pkgver() {
+  cd $srcdir/$_gitname
+  git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+	cd "$srcdir/$_gitname"
+}
+
+build() {
+    cd "$srcdir/$_gitname"
+    #stack init
+    stack build
+}
+
+package() {
+    cd $_gitname
+    stack install
+}

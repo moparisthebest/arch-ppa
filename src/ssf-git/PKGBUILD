@@ -1,0 +1,41 @@
+# Maintainer : Johnathan Jenkins <twodopeshaggy@gmail.com>
+# Contributor: Drew Liszewski <drew dot liszewski at gmail dot com>
+# Contributor: Daniel Varga <varga dot daniel at gmx dot de>
+
+pkgname=ssf-git
+_gitname=ssf
+pkgrel=1
+epoch=1
+pkgver=1.0.1.r383.g2caaaab
+pkgdesc="Secure Socket Funneling - Network tool and toolkit - TCP and UDP port forwarding, SOCKS proxy, remote shell."
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+url="https://github.com/securesocketfunneling/ssf"
+license=('MIT')
+makedepends=('git' 'boost' 'cmake' 'openssl-1.0')
+depends=('boost-libs')
+source=('git://github.com/securesocketfunneling/ssf.git')
+md5sums=('SKIP')
+provides=('ssf')
+
+pkgver() {
+  cd $srcdir/$_gitname
+  git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+	cd "$srcdir/$_gitname"
+	git submodule update --init
+}
+
+build() {
+    cd "$srcdir/$_gitname"
+    mkdir -p "$srcdir/$_gitname/build"
+    cd "$srcdir/$_gitname/build"
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DDISABLE_TLS=ON
+    make
+}
+
+package() {
+    cd $_gitname
+    make install
+}

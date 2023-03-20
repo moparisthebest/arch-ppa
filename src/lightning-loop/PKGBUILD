@@ -1,0 +1,59 @@
+# Maintainer: David Parrish <daveparrish@tutanota.com>
+# URL: https://github.com/lightningnetwork/lnd
+# Upstream: https://github.com/lightningnetwork/lnd
+
+#shellcheck disable=SC2034
+
+pkgname='lightning-loop'
+pkgver=0.21.0_beta
+_pkgver="${pkgver//_/-}"
+pkgrel=1
+pkgdesc='Lightning Loop is a non-custodial service offered by Lightning Labs that makes it easy to move bitcoin into and out of the Lightning Network.'
+arch=('i686' 'x86_64' 'aarch64')
+url='https://github.com/lightninglabs/loop'
+license=('MIT')
+depends=('glibc')
+makedepends=('go')
+provides=('loopd' 'loop')
+conflicts=('loop-bin')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/lightninglabs/loop/archive/refs/tags/v${_pkgver}.tar.gz")
+sha256sums=('3f33f25c9e3c53f970107281bae2fce73d8a2310001e8d4b6afcc584b3798948')
+
+# create a fake go path directory and pushd into it
+# $1 real directory
+# $2 gopath directory
+_fake_gopath_pushd() {
+    mkdir -p "$GOPATH/src/${2%/*}"
+    rm -f "$GOPATH/src/$2"
+    ln -rsT "$1" "$GOPATH/src/$2"
+    pushd "$GOPATH/src/$2" >/dev/null || exit
+}
+
+_fake_gopath_popd() {
+    popd >/dev/null || exit
+}
+
+prepare() {
+  # Create GOPATH
+  mkdir -p "${srcdir:?}/GOPATH"
+  mv "$srcdir/loop-$_pkgver" "$srcdir/loop"
+}
+
+build() {
+  # Use suggested GOFLAGS for Arch Linux.
+  # https://wiki.archlinux.org/title/Go_package_guidelines
+  export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
+
+  export GOPATH="$srcdir/GOPATH"
+  _fake_gopath_pushd "loop" github.com/lightninglabs/loop
+  make && make install
+  _fake_gopath_popd
+}
+
+package() {
+  for _bin in loop loopd; do
+    install -Dm 755 "$srcdir/GOPATH/bin/$_bin" -t "${pkgdir:?}/usr/bin";
+  done
+
+  install -D -m644 "loop/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
