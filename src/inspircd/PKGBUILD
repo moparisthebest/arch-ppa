@@ -1,49 +1,90 @@
 # Maintainer: Maxime Poulin <maxpoulin64@gmail.com>
+# Co-Maintainer: Felix Golatofski <contact@xdfr.de>
+# Contributor: Christian Pfeiffer
 # Contributor: Damian Nowak <damian.nowak@atlashost.eu>
 # Contributor: Kyle Fuller <inbox@kylefuller.co.uk>
 # Contributor: jibi <jibi@paranoici.org>
-# Co-Maintainer: TheGoliath <contact@xdfr.de>
 
 pkgname='inspircd'
-pkgver='3.5.0'
-pkgrel='1'
-pkgdesc='A modular C++ IRC daemon (ircd).'
-arch=('any')
-url='http://www.inspircd.org/'
+pkgver='3.16.1'
+pkgrel='2'
+pkgdesc='InspIRCd is a modular Internet Relay Chat (IRC) server written in C++ for Linux, BSD, Windows and macOS systems.'
+arch=('x86_64' 'aarch64')
+url='https://www.inspircd.org/'
 license=('GPL2')
 conflicts=('inspircd')
 provides=('inspircd')
 depends=('perl')
-makedepends=('pkgconf' 'libmariadbclient' 'sqlite3' 'libldap' 'geoip'
-             'gnutls' 'openssl' 'libgcrypt')
-optdepends=('gnutls: m_ssl_gnutls'
-            'libgcrypt: m_ssl_gnutls'
-            'openssl: m_ssl_openssl'
-            'libmariadbclient: m_mysql'
-            'pcre: m_regex_pcre'
-            'sqlite3: m_sqlite3'
-            'libldap: m_ldapoper and m_ldapauth'
-            'geoip: m_geoip')
+makedepends=(
+    'libmariadbclient'
+    'sqlite3'
+    'libldap'
+    'geoip'
+    'libmaxminddb'
+    'gnutls'
+    'openssl'
+    'libgcrypt'
+    'postgresql-client'
+    're2'
+    'tre'
+    'pcre'
+    'mbedtls'
+    'pkg-config'
+)
+optdepends=(
+    'gnutls: m_ssl_gnutls'
+    'libgcrypt: m_ssl_gnutls'
+    'openssl: m_ssl_openssl'
+    'libmariadbclient: m_mysql'
+    'postgresql-client: m_pgsql'
+    'libmaxminddb: m_geo_maxmind'
+    'pcre: m_regex_pcre'
+    'sqlite3: m_sqlite3'
+    'libldap: m_ldap'
+    'geoip: m_geoip'
+    're2: m_regex_re2'
+    'tre: m_regex_tre'
+    'mbedtls: m_ssl_mbedtls')
 install='inspircd.install'
-source=("https://github.com/inspircd/inspircd/archive/v$pkgver.tar.gz"
-        'inspircd.service')
-sha512sums=('64e7be4b013c418577362b33be73b8f7045f1071ccb2c4e83fdf1a96b98656a3541e20c005bc32532007da21d9ba963f534cd14d16c2e1cf8afcf34b22ffad8c'
-            '5a16a7c237693ffc6a108358f339b6aa2451fb16430561848ae869f890199b38fab6a13640bcc35cf1d07e32d7e5fff405d88668ee05ddaffc2ef61cb42ee832')
+
+source=(
+    "https://github.com/inspircd/inspircd/archive/v$pkgver.tar.gz"
+    "$pkgname.service"
+    "$pkgname.sysusers"
+)
+sha512sums=(
+    '2b488858b0012bcb3eb92a33960e9927c861587c7b7451a47fd3e10a97fad9c392524d98712593fd455c5cbae7fd1779e4b90b9e55680c2f36b483e0acf2bba5'
+    '5a16a7c237693ffc6a108358f339b6aa2451fb16430561848ae869f890199b38fab6a13640bcc35cf1d07e32d7e5fff405d88668ee05ddaffc2ef61cb42ee832'
+    '90e7ae20a0d13cef2ff00c56382ea5cf1ed8843228937c49cab7fe0e2a34d02b9fac20dd55c6cd5e79533b5764a9d10d19e26b043a2d9c98a4384a7e1c2859c4'
+)
+
+prepare() {
+    cd "${srcdir}/inspircd-${pkgver}"
+    sed -i -e s/-lldap_r/-lldap/g src/modules/extra/m_ldap.cpp
+}
 
 build() {
-  cd "${srcdir}/inspircd-${pkgver}"
+    cd "${srcdir}/inspircd-${pkgver}"
 
-  ./configure \
-    --enable-extras=m_geoip.cpp \
-    --enable-extras=m_ldapauth.cpp \
-    --enable-extras=m_ldapoper.cpp \
+    ./configure \
+    --enable-extras=m_geo_maxmind.cpp \
+    --enable-extras=m_ldap.cpp \
     --enable-extras=m_mysql.cpp \
+    --enable-extras=m_pgsql.cpp \
     --enable-extras=m_regex_pcre.cpp \
     --enable-extras=m_regex_posix.cpp \
-    --enable-extras=m_sqlite3.cpp
+    --enable-extras=m_regex_stdlib.cpp \
+    --enable-extras=m_regex_re2.cpp \
+    --enable-extras=m_regex_tre.cpp \
+    --enable-extras=m_sqlite3.cpp \
+    --enable-extras=m_ssl_gnutls.cpp \
+    --enable-extras=m_ssl_openssl.cpp \
+    --enable-extras=m_ssl_mbedtls.cpp \
+    --enable-extras=m_sslrehashsignal.cpp
 
-  ./configure \
+    ./configure \
     --uid=0 \
+    --gid=0 \
     --prefix=/usr/lib/inspircd \
     --binary-dir=/usr/bin \
     --module-dir=/usr/lib/inspircd/modules \
@@ -51,25 +92,20 @@ build() {
     --data-dir=/var/lib/inspircd \
     --log-dir=/var/log/inspircd \
     --distribution-label=archlinux
-  make
+    make
 }
 
 package() {
-  install -Dm644 "${srcdir}"/inspircd.service "${pkgdir}"/usr/lib/systemd/system/inspircd.service
-  install -o141 -g141 -dm750 "${pkgdir}/var/log/inspircd" "${pkgdir}/var/lib/inspircd"
+    install -Dm644 "${srcdir}/$pkgname.service" "${pkgdir}"/usr/lib/systemd/system/inspircd.service
+    install -Dm644 "${srcdir}/$pkgname.sysusers" "$pkgdir/usr/lib/sysusers.d/$pkgname.conf"
+    install -dm750 "${pkgdir}/var/log/inspircd" "${pkgdir}/var/lib/inspircd"
 
-  cd "${srcdir}/inspircd-${pkgver}"
-  make DESTDIR="$pkgdir" install
+    cd "${srcdir}/inspircd-${pkgver}"
+    make DESTDIR="$pkgdir" install
 
-  mkdir -p "${pkgdir}"/usr/share/inspircd
-  mv "${pkgdir}"/etc/inspircd/examples "${pkgdir}"/usr/share/inspircd/examples
+    mkdir -p "${pkgdir}"/usr/share/inspircd
+    mv "${pkgdir}"/etc/inspircd/examples "${pkgdir}"/usr/share/inspircd/examples
 
-  rm -rf "${pkgdir}"/usr/lib/inspircd/logs
-  rm -rf "${pkgdir}"/usr/lib/inspircd/data
-
-  # Warn about major upgrade
-  echo "Version 3 is a major upgrade!"
-  echo "Please consult https://docs.inspircd.org/3/configuration-changes/"
-  echo "for configuration changes and add them accordingly" 
-
+    rm -rf "${pkgdir}"/usr/lib/inspircd/logs
+    rm -rf "${pkgdir}"/usr/lib/inspircd/data
 }
