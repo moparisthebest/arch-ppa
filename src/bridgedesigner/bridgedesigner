@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ "$1" == "-s" ] && export LIBGL_ALWAYS_SOFTWARE=1
+
+/usr/lib/jvm/java-8-openjdk/jre/bin/java -Djava.library.path=/usr/lib/jogl -Dswing.systemlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -cp /usr/share/java/bridgedesigner/WPBD.jar:/usr/share/java/bridgedesigner/AbsoluteLayout.jar:/usr/share/java/bridgedesigner/bsaf-1.9.1.jar:/usr/share/java/bridgedesigner/jh.jar:/usr/share/java/jogl/gluegen-rt.jar:/usr/share/java/jogl/jogl-all.jar bridgedesigner.BDApp
