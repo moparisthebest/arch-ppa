@@ -1,0 +1,16 @@
+post_install() {
+	echo " >> initramfs-pgp-encrypt - READ ME!"
+	echo " >> This is a direct replacement for the encrypt hook, it just tries"
+	echo " >> to decrypt the key at /root/disk.bin.gpg and use it first before"
+	echo " >> trying to unlock with cryptsetup password the normal way"
+	echo ""
+	echo " >> Key must be at /root/disk.bin.gpg and the public key it's encrypted"
+	echo " >> for must be at /root/disk.pub.key and both accessible by root."
+	echo ""
+	echo " >> NOTE: this currently has special logic to try 2 passwords for every"
+	echo " >> one you type in, to support typing a password in the Dvorak keyboard"
+	echo " >> layout while the system is set to QWERTY.  This is to support family"
+	echo " >> members sharing a computer with one pass where some use Dvorak and"
+	echo " >> others QWERTY.  You can comment out that code or ask and I could"
+	echo " >> make it configurable"
+}

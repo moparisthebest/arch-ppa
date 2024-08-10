@@ -1,0 +1,69 @@
+#!/bin/bash
+
+build() {
+    set +e
+    local mod pub_key
+    
+    map add_module 'dm-crypt' 'dm-integrity' 'hid-generic?'
+    if [[ -n "$CRYPTO_MODULES" ]]; then
+        for mod in $CRYPTO_MODULES; do
+            add_module "$mod"
+        done
+    else
+        add_all_modules '/crypto/'
+    fi
+
+    add_binary 'cryptsetup'
+
+    map add_udev_rule \
+        '10-dm.rules' \
+        '13-dm-disk.rules' \
+        '95-dm-notify.rules' \
+        '/usr/lib/initcpio/udev/11-dm-initramfs.rules'
+
+    # cryptsetup calls pthread_create(), which dlopen()s libgcc_s.so.1
+    add_binary '/usr/lib/libgcc_s.so.1'
+
+    # cryptsetup loads the legacy provider which is required for whirlpool
+    add_binary '/usr/lib/ossl-modules/legacy.so'
+
+    # above is from encrypt hook, below is for gpg
+
+    if [ -d $BUILDROOT/etc/initcpio/gpg ]; then
+        echo "WARNING! /etc/initcpio/gpg exists in initramfs buildroot. Huh?"
+        rm -rf "$BUILDROOT/etc/initcpio/gpg"
+    fi
+
+    mkdir -p $BUILDROOT/etc/initcpio/gpg
+    chmod 0700 $BUILDROOT/etc/initcpio/gpg
+
+    add_binary "tr"
+    add_binary "dmsetup"
+    add_binary "gpg"
+    add_binary "gpg-agent"
+    add_binary "gpg-connect-agent"
+    add_binary "/usr/lib/gnupg/scdaemon"
+
+    add_file "/root/disk.bin.gpg"
+
+    pub_key="/root/disk.pub.key"
+    if [[ ! -f "$pub_key" ]]; then
+        error "file not found: '%s'" "$pub_key"
+        return 1
+    fi
+
+    gpg --homedir "$BUILDROOT/etc/initcpio/gpg" --import "$pub_key"
+
+    rm -f "$BUILDROOT/etc/initcpio/gpg/S.gpg-agent"*
+
+    add_runscript
+}
+
+help() {
+    cat <<HELPEOF
+Plese refer to the help for the regular Arch encrypt hook, and the
+docs in initramfs-pgp-encrypt.install for how to set up the PGP keys
+HELPEOF
+}
+
+# vim: set ft=sh ts=4 sw=4 et:
