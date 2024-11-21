@@ -122,12 +122,16 @@ EOF
                         dv_pass="$(echo "$pass" | dvorak)"
 
                         rm -f ${ckeyfile}
+
+                        if [ -f /root/disk.bin.gpg ]; then
                         
                         # try dvorak gpg pass first
                         gpg --passphrase "$dv_pass" --batch --pinentry-mode loopback --quiet --output ${ckeyfile} --decrypt /root/disk.bin.gpg 2>/dev/null
                         
                         # if dv_pass was wrong, try qwerty pass
                         [ ! -f ${ckeyfile} ] && gpg --passphrase "$pass" --batch --pinentry-mode loopback --quiet --output ${ckeyfile} --decrypt /root/disk.bin.gpg 2>/dev/null
+
+                        fi # end disk.bin.gpg exists
                         
                         # if no gpg pass, try direct luks pass, qwerty first
                         [ ! -f ${ckeyfile} ] && echo -n "$pass" > ${ckeyfile}
@@ -147,7 +151,7 @@ EOF
                         # sleep 2;
                     done
                     rm -f ${ckeyfile}
-                    gpg-connect-agent KILLAGENT /bye >/dev/null 2>&1
+                    [ -f /root/disk.bin.gpg ] && gpg-connect-agent KILLAGENT /bye >/dev/null 2>&1
                     rm -rf "$GNUPGHOME"
                 fi
             fi

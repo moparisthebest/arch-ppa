@@ -28,6 +28,8 @@ build() {
     add_binary '/usr/lib/ossl-modules/legacy.so'
 
     # above is from encrypt hook, below is for gpg
+    add_binary "tr"
+    if [ -f "/root/disk.bin.gpg" ]; then
 
     if [ -d $BUILDROOT/etc/initcpio/gpg ]; then
         echo "WARNING! /etc/initcpio/gpg exists in initramfs buildroot. Huh?"
@@ -37,7 +39,6 @@ build() {
     mkdir -p $BUILDROOT/etc/initcpio/gpg
     chmod 0700 $BUILDROOT/etc/initcpio/gpg
 
-    add_binary "tr"
     add_binary "dmsetup"
     add_binary "gpg"
     add_binary "gpg-agent"
@@ -55,6 +56,8 @@ build() {
     gpg --homedir "$BUILDROOT/etc/initcpio/gpg" --import "$pub_key"
 
     rm -f "$BUILDROOT/etc/initcpio/gpg/S.gpg-agent"*
+
+    fi # end if disk.bin.gpg exists
 
     add_runscript
 }

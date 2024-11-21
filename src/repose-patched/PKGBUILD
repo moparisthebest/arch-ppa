@@ -3,19 +3,30 @@
 
 pkgname=repose-patched
 pkgver=7.1
-pkgrel=1
-
-pkgdesc="Arch Linux repo building tool"
-url="https://github.com/vodik/repose"
-arch=('x86_64')
-license=('GPL')
+pkgrel=2
 
 provides=('repose')
 conflicts=('repose')
 
-depends=('pacman' 'libarchive' 'gnupg')
-makedepends=('ragel')
-checkdepends=('python-pytest' 'python-cffi' 'python-pytest-xdist')
+pkgdesc="Arch Linux repo building tool"
+url="https://github.com/vodik/repose"
+arch=('x86_64')
+license=('GPL-2.0-or-later')
+depends=(
+  'gpgme' 'libgpgme.so'
+  'libarchive' 'libarchive.so'
+  'openssl' 'libcrypto.so'
+  'pacman' 'libalpm.so'
+)
+makedepends=(
+  'ragel'
+)
+checkdepends=(
+  'python-cffi'
+  'python-pytest'
+  'python-pytest-xdist'
+  'python-setuptools'
+)
 
 source=("repose-$pkgver.tar.gz::https://github.com/vodik/repose/archive/$pkgver.tar.gz" "fix.patch")
 
