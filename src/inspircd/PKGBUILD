@@ -7,7 +7,7 @@
 
 pkgname='inspircd'
 pkgver='3.17.1'
-pkgrel='2'
+pkgrel='3'
 pkgdesc='InspIRCd is a modular Internet Relay Chat (IRC) server written in C++ for Linux, BSD, Windows and macOS systems.'
 arch=('x86_64' 'aarch64')
 url='https://www.inspircd.org/'
