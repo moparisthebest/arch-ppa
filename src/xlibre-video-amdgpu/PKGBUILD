@@ -1,45 +1,94 @@
-# Maintainer:  Vitalii Kuzhdin <vitaliikuzhdin@gmail.com>
-# Maintainer:  artist for XLibre
+# Maintainer: artist for Artix Linux and XLibre <artist@artixlinux.org>
 
-_basename="xf86-video-amdgpu"
-pkgname="${_basename//xf86/xlibre}"
-pkgver=23.0.0.4
-pkgrel=1
-pkgdesc="XLibre amdgpu video driver"
-arch=('aarch64' 'x86_64')
-url="https://github.com/X11Libre/${_basename}"
-license=('MIT')
-depends=('glibc' 'libdrm>=2.4.121' 'mesa' 'systemd-libs')
-makedepends=('systemd' 'xlibre-xserver-devel' 'xorgproto' 'X-ABI-VIDEODRV_VERSION=28.0')
-provides=("${_basename}")
-conflicts=("${_basename}" 'xorg-server<1.20.0' 'X-ABI-VIDEODRV_VERSION<28' 'X-ABI-VIDEODRV_VERSION>=29')
+pkgname=xlibre-video-amdgpu
+pkgver=25.0.1
+pkgrel=8
+pkgdesc="XLibre fork of X.Org amdgpu video driver"
+arch=(x86_64 aarch64)
+_pkgname="${pkgname//xlibre/xf86}"
+url="https://github.com/X11Libre/${_pkgname}"
+depends=("xlibre-xserver>=${pkgver%.*}" 'glibc')
+makedepends=("xlibre-xserver-devel>=${pkgver%.*}" 'xorgproto')
+conflicts=("${_pkgname}")
+provides=("${_pkgname}")
+source=("${url}/archive/refs/tags/xlibre-${_pkgname}-${pkgver}.tar.gz")
 groups=('xlibre-drivers')
-_pkgsrc="${_basename}-xlibre-${_basename}-${pkgver}"
-source=("${_pkgsrc}.tar.gz::${url}/archive/refs/tags/xlibre-${_basename}-${pkgver}.tar.gz")
-b2sums=('b3ae81a6ecaea9c8dcff0aeeecd0d6a740c70e52abbd94394badfab6bb013dabf6a5e27665155315b81b12cd9ba209eb17fbd73714f45621c11c1032d107e897')
+depends+=('mesa' 'libdrm')
+makedepends+=('meson')
 
 build() {
-  # Since pacman 5.0.2-2, hardened flags are now enabled in makepkg.conf
-  # With them, modules fail to load with undefined symbol.
-  # See https://bugs.archlinux.org/task/55102 / https://bugs.archlinux.org/task/54845
-  export CFLAGS="${CFLAGS/-fno-plt}"
-  export CXXFLAGS="${CXXFLAGS/-fno-plt}"
-  export LDFLAGS="${LDFLAGS/-Wl,-z,now}"
-  local configure_options=(
-    --prefix='/usr'
-    --enable-glamor
-  )
+  case "$CARCH" in
+    "x86_64")
+      CFLAGS=" -march=x86-64"
+      ;;
+    "aarch64")
+      CFLAGS=" -march=armv8-a"
+      ;;
+    *)
+      CFLAGS=" -march=native"
+      ;;
+  esac
+  CFLAGS+=" -mtune=generic -O2 -pipe -fexceptions -Wp,-D_FORTIFY_SOURCE=3 -Wformat -Werror=format-security"
+  CFLAGS+=" -fstack-clash-protection -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer"
+  LDFLAGS=" -Wl,-O1 -Wl,--sort-common -Wl,--as-needed -Wl,-z,lazy -Wl,-z,relro -Wl,-z,pack-relative-relocs"
+  if [[ $CARCH != 'aarch64' ]]; then
+    CFLAGS+=" -fcf-protection"
+  fi
+  if [[ "$_pkgname" == *"xf86-input"* ]]; then
+    CFLAGS+=" -fno-plt"
+    LDFLAGS+=" -Wl,-z,now"
+  fi
+  if [[ "$_pkgname" == *"xf86-video-intel"* ]]; then
+    CFLAGS+=" -fno-lto"
+    LDFLAGS+=" -fno-lto"
+  fi
+  CXXFLAGS="${CFLAGS} -Wp,-D_GLIBCXX_ASSERTIONS"
+  export CFLAGS="${CFLAGS}"
+  export CXXFLAGS="${CXXFLAGS}"
+  export LDFLAGS="${LDFLAGS}"
 
-  cd "${srcdir}/${_pkgsrc}"
-  autoreconf -vfi
-  ./configure "${configure_options[@]}"
-  make
+  arch-meson ${_pkgname}-xlibre-${_pkgname}-${pkgver} build \
+    -D udev=enabled \
+    -D glamor=enabled \
+    -D configdir=/usr/share/X11/xorg.conf.d/  \
+    -D moduledir="/usr/lib/xorg/modules/xlibre-${pkgver%%.*}/"
+
+  meson configure build
+  ninja -C build
+}
+
+check() {
+  meson test -C build
 }
 
 package() {
-  cd "${srcdir}/${_pkgsrc}"
-  make DESTDIR="${pkgdir}" install
-
-  install -vDm644 "README.md" "${pkgdir}/usr/share/doc/${pkgname}/README.md"
-  install -vDm644 "COPYING"   "${pkgdir}/usr/share/licenses/${pkgname}/COPYING"
+  DESTDIR="$pkgdir" ninja -C build install
+  install -Dm644 "${srcdir}"/${_pkgname}-xlibre-${_pkgname}-${pkgver}/COPYING "${pkgdir}"/usr/share/licenses/${pkgname}/LICENSE
 }
+
+
+xbuild() {
+  cd ${_pkgname}-xlibre-${_pkgname}-${pkgver}
+  export CFLAGS=${CFLAGS/-fno-plt}
+  export CXXFLAGS=${CXXFLAGS/-fno-plt}
+  export LDFLAGS=${LDFLAGS/-Wl,-z,now}
+
+  ./autogen.sh
+  ./configure --prefix=/usr \
+    --enable-glamor
+  make
+}
+
+xcheck() {
+  cd ${_pkgname}-xlibre-${_pkgname}-${pkgver}
+  make check
+}
+
+xpackage() {
+  cd ${_pkgname}-xlibre-${_pkgname}-${pkgver}
+  make "DESTDIR=${pkgdir}" install
+  install -Dm644 "${srcdir}"/${_pkgname}-xlibre-${_pkgname}-${pkgver}/COPYING "${pkgdir}"/usr/share/licenses/${pkgname}/LICENSE
+}
+
+sha256sums=('d6c006a1efc389974b63e152e07338a4af87a8d0a692f4f2ce3c1484747e912f')
+
