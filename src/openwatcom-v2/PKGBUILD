@@ -1,0 +1,47 @@
+# Maintainer: Fabian Maurer <dark.shadow4@web.de>
+# Contributor: Jens Staal <staal1978@gmail.com>
+# Contributor : ackalker
+pkgname=openwatcom-v2
+_build=2025_11_03
+pkgver=2.0_$_build
+pkgrel=2
+pkgdesc="The Open Watcom Fortran/C/C++ compiler, binary distribution -V2 fork"
+arch=('x86_64')
+#url="http://www.openwatcom.org"
+url="https://github.com/open-watcom"
+license=('custom:OWPL-1')
+source=(
+"ow-snapshot_$_build.tar.xz"::"https://github.com/open-watcom/open-watcom-v2/releases/download/${_build//_/-}-Build/ow-snapshot.tar.xz"
+'owsetenv.sh'
+)
+noextract=("ow-snapshot_$_build.tar.xz")
+md5sums=('10104747b18a54495e8781ea850cba7d'
+         '2abd462742068d76a5cf1753b128ac94')
+options=(!strip)
+
+build() {
+	ls 
+}
+
+package() {
+	mkdir -p "${pkgdir}/opt/watcom"
+	bsdtar -xf "${srcdir}/ow-snapshot_$_build.tar.xz" -C "${pkgdir}/opt/watcom"
+	rm -rf "${pkgdir}/opt/watcom/binnt"
+	rm -rf "${pkgdir}/opt/watcom/binp"
+	rm -rf "${pkgdir}/opt/watcom/binnt64"
+	install -d "${pkgdir}/usr/share/licenses/watcom"
+	install -Dm644 "$pkgdir/opt/watcom/license.txt" "$pkgdir/usr/share/licenses/watcom/license.txt"
+
+	cp "${srcdir}/owsetenv.sh" ${pkgdir}/opt/watcom/
+
+	msg "correct permissions for header directories"
+	chmod -R 755 $pkgdir/opt/watcom/{h,lh}
+	
+	msg "adding some fake binaries to make life easier"
+	cd $pkgdir/opt/watcom/binl
+	ln -s /usr/bin/true ranlib
+	ln -s wlib ar
+
+    # fix ownership
+     chown -R root:root $pkgdir/opt/watcom/
+} 
