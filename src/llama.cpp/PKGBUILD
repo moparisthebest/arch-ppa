@@ -3,8 +3,8 @@
 # Contributor: envolution
 
 pkgname=llama.cpp
-pkgver=b8794 # renovate: datasource=github-releases depName=ggml-org/llama.cpp
-pkgrel=3
+pkgver=b9158 # renovate: datasource=github-releases depName=ggml-org/llama.cpp
+pkgrel=1
 pkgdesc="Port of Facebook's LLaMA model in C/C++"
 arch=(x86_64 armv7h aarch64)
 url='https://github.com/ggml-org/llama.cpp'
@@ -19,6 +19,7 @@ makedepends=(
   cmake
   git
   shaderc
+  ninja
 )
 optdepends=(
   'python-numpy: needed for convert_hf_to_gguf.py'
@@ -32,20 +33,28 @@ provides=(${pkgname})
 conflicts=(${pkgname} libggml ggml)
 options=(lto !debug)
 backup=("etc/conf.d/llama.cpp")
+install='llama.cpp.install'
 source=(
   "${pkgname}-${pkgver}.tar.gz::https://github.com/ggml-org/llama.cpp/archive/refs/tags/${pkgver}.tar.gz"
-  llama.cpp.conf
-  llama.cpp.service
+  'llama.cpp.conf'
+  'llama.cpp.service'
+  'llama.cpp.install'
+  'sysusers.conf'
+  'tmpfiles.conf'
 )
-sha256sums=('7b66767ccfa98177265c0aabefe96a79c224e9aa1acaa991a1fb787d0dd9b724'
+sha256sums=('65300b73c4f461ec216cab87bf6f0e6af8e6348646fb7febb701100b4893fd31'
             '53fa70cfe40cb8a3ca432590e4f76561df0f129a31b121c9b4b34af0da7c4d87'
-            '0377d08a07bda056785981d3352ccd2dbc0387c4836f91fb73e6b790d836620d')
+            '48d6b261315c9175b4b4cea4900bd4d76f2f27112804934db656537485510cd2'
+            'c534b4c37ff8ac9174a2f6f410daa96d991e8c638f338383ffb07613c771724b'
+            'e687106ee9f6a5f0de4f286015f85a60e68d884e8100c67810b709960c354148'
+            '402a44f609785fbabc7afca6e8a486ff517933661e9e7f4955fed6574eac9875')
 
 prepare() {
   ln -sf "${pkgname}-${pkgver}" llama.cpp
 }
 build() {
   local _cmake_options=(
+    -G Ninja
     -B build
     -S "${pkgname}"
     -DCMAKE_BUILD_TYPE=Release
@@ -88,5 +97,7 @@ package() {
   install -Dm644 "${pkgname}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
   install -Dm644 "llama.cpp.conf" "${pkgdir}/etc/conf.d/llama.cpp"
   install -Dm644 "llama.cpp.service" "${pkgdir}/usr/lib/systemd/system/llama.cpp.service"
+  install -Dm644 "sysusers.conf" "${pkgdir}/usr/lib/sysusers.d/llama-cpp.conf"
+  install -Dm644 "tmpfiles.conf" "${pkgdir}/usr/lib/tmpfiles.d/llama-cpp.conf"
 }
 # vim:set ts=2 sw=2 et:
