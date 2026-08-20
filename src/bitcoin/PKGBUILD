@@ -26,6 +26,7 @@ makedepends=(
   qt6-base
   qt6-tools
   sqlite
+  libzmq.so
 )
 checkdepends=(
   python
@@ -81,7 +82,7 @@ build() {
   export CC=/usr/bin/cc-15
   export CXX=/usr/bin/c++-15
 
-  cmake -B build -DBUILD_GUI=ON -DBUILD_UTIL_CHAINSTATE=ON -DBUILD_SHARED_LIBS=ON \
+  cmake -B build -DBUILD_GUI=ON -DBUILD_UTIL_CHAINSTATE=ON -DBUILD_SHARED_LIBS=ON -DWITH_ZMQ=ON \
     -DCMAKE_BUILD_TYPE=None -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBEXECDIR=lib
   cmake --build build
 }
