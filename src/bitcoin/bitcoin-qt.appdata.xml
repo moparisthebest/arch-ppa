@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.bitcoin.bitcoin-qt</id>
+  <name>Bitcoin Core</name>
+  <project_license>MIT</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+  <summary>Fully validating Bitcoin peer-to-peer network node, wallet and GUI</summary>
+  <url type="homepage">https://bitcoincore.org/</url>
+  <url type="bugtracker">https://github.com/bitcoin/bitcoin/issues</url>
+  <launchable type="desktop-id">org.bitcoin.bitcoin-qt.desktop</launchable>
+  <description>
+    <p>Bitcoin Core connects to the Bitcoin peer-to-peer network to download and
+    fully validate blocks and transactions. It also includes a wallet and
+    graphical user interface.</p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image type="source">https://user-images.githubusercontent.com/6399679/62743657-2fc28b80-ba11-11e9-9bbf-d3ad0d17abb0.png</image>
+    </screenshot>
+  </screenshots>
+  <content_rating type="oars-1.1"/>
+  <developer_name>Bitcoin Core</developer_name>
+  <developer id="org.bitcoincore">
+    <name>Bitcoin Core</name>
+  </developer>
+</component>
