@@ -6,8 +6,8 @@
 # Contributor: jibi <jibi@paranoici.org>
 
 pkgname='inspircd'
-pkgver='3.17.1'
-pkgrel='3'
+pkgver='3.18.0'
+pkgrel='1'
 pkgdesc='InspIRCd is a modular Internet Relay Chat (IRC) server written in C++ for Linux, BSD, Windows and macOS systems.'
 arch=('x86_64' 'aarch64')
 url='https://www.inspircd.org/'
@@ -16,35 +16,24 @@ conflicts=('inspircd')
 provides=('inspircd')
 depends=('perl')
 makedepends=(
-    'libmariadbclient'
     'sqlite3'
-    'libldap'
     'geoip'
     'libmaxminddb'
-    'gnutls'
     'openssl'
-    'libgcrypt'
-    'postgresql-client'
     're2'
     'tre'
     'pcre'
-    'mbedtls'
     'pkg-config'
 )
 optdepends=(
-    'gnutls: m_ssl_gnutls'
-    'libgcrypt: m_ssl_gnutls'
     'openssl: m_ssl_openssl'
-    'libmariadbclient: m_mysql'
-    'postgresql-client: m_pgsql'
     'libmaxminddb: m_geo_maxmind'
     'pcre: m_regex_pcre'
     'sqlite3: m_sqlite3'
-    'libldap: m_ldap'
     'geoip: m_geoip'
     're2: m_regex_re2'
     'tre: m_regex_tre'
-    'mbedtls: m_ssl_mbedtls')
+)
 install='inspircd.install'
 
 source=(
@@ -53,7 +42,7 @@ source=(
     "$pkgname.sysusers"
 )
 sha512sums=(
-    'ae8699506d32e7c09c1b982baeea36eca520d6be65732976e77695f1ca1768aa070f0ae3b9abf9fd390201021a679ef5478114b66f40e996de6873f3fb83836b'
+    '14ee48021f69084b09c09c6660ffdba4368eada488aa90ae47ac783c84bd07e3fb5f2c97aecdfe09d6952be779eac792cfd80ea7e53ed1c129f56f7df57a46db'
     '5a16a7c237693ffc6a108358f339b6aa2451fb16430561848ae869f890199b38fab6a13640bcc35cf1d07e32d7e5fff405d88668ee05ddaffc2ef61cb42ee832'
     '90e7ae20a0d13cef2ff00c56382ea5cf1ed8843228937c49cab7fe0e2a34d02b9fac20dd55c6cd5e79533b5764a9d10d19e26b043a2d9c98a4384a7e1c2859c4'
 )
@@ -68,18 +57,13 @@ build() {
 
     ./configure \
     --enable-extras=m_geo_maxmind.cpp \
-    --enable-extras=m_ldap.cpp \
-    --enable-extras=m_mysql.cpp \
-    --enable-extras=m_pgsql.cpp \
     --enable-extras=m_regex_pcre.cpp \
     --enable-extras=m_regex_posix.cpp \
     --enable-extras=m_regex_stdlib.cpp \
     --enable-extras=m_regex_re2.cpp \
     --enable-extras=m_regex_tre.cpp \
     --enable-extras=m_sqlite3.cpp \
-    --enable-extras=m_ssl_gnutls.cpp \
     --enable-extras=m_ssl_openssl.cpp \
-    --enable-extras=m_ssl_mbedtls.cpp \
     --enable-extras=m_sslrehashsignal.cpp
 
     ./configure \
