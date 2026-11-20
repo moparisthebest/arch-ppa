@@ -1,0 +1,4 @@
+post_install() {
+  echo ">>> This package was rebased on the [community] one."
+  echo ">>> Thus, nut will now run as the 'nut' rather than 'ups' user."
+}
